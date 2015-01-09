@@ -1,7 +1,10 @@
-module.exports = require("./make-webpack-config")({
-	hot: true,
-	devServer: true,
-	hotComponents: true,
-	devtool: "eval",
-	debug: true,
+'use strict';
+
+
+module.exports = require('./make-webpack-config')({
+    hot: true,
+    devServer: true,
+    hotComponents: true,
+    devtool: 'eval',
+    debug: true,
 });
