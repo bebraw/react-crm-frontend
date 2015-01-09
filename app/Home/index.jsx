@@ -1,17 +1,24 @@
-var React = require("react");
-var Link = require("react-router").Link;
+'use strict';
+
+var React = require('react');
+var Link = require('react-router').Link;
+
 
 module.exports = React.createClass({
-	render: function() {
-		return <div>
-			<h2>Homepage</h2>
-			<p>This is the homepage.</p>
-			<p>Try to go to a todo list page:</p>
-			<ul>
-				<li><Link to="todolist" params={{list: "mylist"}}>mylist</Link></li>
-				<li><Link to="todolist" params={{list: "otherlist"}}>otherlist</Link></li>
-			</ul>
-			<p>Or try to switch to <Link to="some-page">some page</Link>.</p>
-		</div>;
-	}
+    render: function() {
+        return <div>
+            <p>Login form should go here. Temporary navigation below.</p>
+            <ul>
+                <li>
+                    <Link to='dashboard'>Dashboard</Link>
+                </li>
+                <li>
+                    <Link to='registers'>Registers</Link>
+                </li>
+                <li>
+                    <Link to='contracts'>Contracts</Link>
+                </li>
+            </ul>
+        </div>;
+    }
 });
