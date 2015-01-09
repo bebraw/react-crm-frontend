@@ -1,3 +1,4 @@
+/* global __resourceQuery: false */
 'use strict';
 
 var async = require('async');
