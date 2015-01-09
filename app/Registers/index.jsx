@@ -1,13 +1,27 @@
 'use strict';
 var React = require('react');
-
+var ReactRouter = require('react-router');
+var RouteHandler = ReactRouter.RouteHandler;
+var Link = ReactRouter.Link;
 
 var Registers = React.createClass({
     render: function() {
         return <div>
-            <h2>Registers</h2>
+            <nav>
+                <ol>
+                    <li>
+                        <Link to='clients'>Clients</Link>
+                    </li>
+                    <li>
+                        <Link to='products'>Products</Link>
+                    </li>
+                    <li>
+                        <Link to='invoices'>Invoices</Link>
+                    </li>
+                </ol>
+            </nav>
 
-            <p>This should show registers</p>
+            <RouteHandler />
         </div>;
     }
 });

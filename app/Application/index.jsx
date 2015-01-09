@@ -29,7 +29,7 @@ var Application = React.createClass({
                             <Link to='dashboard'>Dashboard</Link>
                         </li>
                         <li>
-                            <Link to='registers'>Registers</Link>
+                            <Link to='clients'>Registers</Link>
                         </li>
                         <li>
                             <Link to='contracts'>Contracts</Link>
