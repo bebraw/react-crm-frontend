@@ -7,7 +7,7 @@ var Link = ReactRouter.Link;
 var Registers = React.createClass({
     render: function() {
         return <div>
-            <nav>
+            <nav className="secondary">
                 <ol>
                     <li>
                         <Link to='clients'>Clients</Link>

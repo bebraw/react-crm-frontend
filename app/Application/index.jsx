@@ -23,7 +23,7 @@ var Application = React.createClass({
             {this.state.loading ? <div style={{float: 'right'}}>loading...</div> : null}
 
             <header>
-                <nav>
+                <nav className="primary">
                     <ol>
                         <li>
                             <Link to='dashboard'>Dashboard</Link>

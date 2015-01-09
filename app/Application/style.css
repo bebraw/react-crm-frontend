@@ -47,12 +47,16 @@ nav li {
     display: inline;
 }
 
-nav li a {
+nav.primary li a {
     background: #ddd;
     color: #444;
 }
 
-nav a.active {
+nav.primary a.active {
     background: #444;
     color: #eee;
+}
+
+nav.secondary a.active {
+    font-weight: bold;
 }
