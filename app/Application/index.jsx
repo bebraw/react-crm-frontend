@@ -2,7 +2,9 @@
 
 var React = require('react');
 var StateFromStoreMixin = require('items-store/StateFromStoresMixin');
-var RouteHandler = require('react-router').RouteHandler;
+var ReactRouter = require('react-router');
+var RouteHandler = ReactRouter.RouteHandler;
+var Link = ReactRouter.Link;
 
 require('./style.css');
 
@@ -19,7 +21,21 @@ var Application = React.createClass({
     render: function() {
         return <div className={this.state.loading ? 'application loading' : 'application'}>
             {this.state.loading ? <div style={{float: 'right'}}>loading...</div> : null}
+
             <h1>Koodilehto CRM</h1>
+
+            <ul>
+                <li>
+                    <Link to='dashboard'>Dashboard</Link>
+                </li>
+                <li>
+                    <Link to='registers'>Registers</Link>
+                </li>
+                <li>
+                    <Link to='contracts'>Contracts</Link>
+                </li>
+            </ul>
+
             <RouteHandler />
         </div>;
     }
