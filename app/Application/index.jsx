@@ -22,21 +22,25 @@ var Application = React.createClass({
         return <div className={this.state.loading ? 'application loading' : 'application'}>
             {this.state.loading ? <div style={{float: 'right'}}>loading...</div> : null}
 
-            <h1>Koodilehto CRM</h1>
+            <header>
+                <nav>
+                    <ol>
+                        <li>
+                            <Link to='dashboard'>Dashboard</Link>
+                        </li>
+                        <li>
+                            <Link to='registers'>Registers</Link>
+                        </li>
+                        <li>
+                            <Link to='contracts'>Contracts</Link>
+                        </li>
+                    </ol>
+                </nav>
+            </header>
 
-            <ul>
-                <li>
-                    <Link to='dashboard'>Dashboard</Link>
-                </li>
-                <li>
-                    <Link to='registers'>Registers</Link>
-                </li>
-                <li>
-                    <Link to='contracts'>Contracts</Link>
-                </li>
-            </ul>
-
-            <RouteHandler />
+            <article>
+                <RouteHandler />
+            </article>
         </div>;
     }
 });

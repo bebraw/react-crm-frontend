@@ -1,12 +1,58 @@
 body {
-	background: #eee;
+    margin: 0;
+    padding: 0;
+
+    background: #eee;
+
+    font-family: Sans-Serif;
 }
 
 .application {
-	opacity: 1;
+    opacity: 1;
 }
 
 .application.loading {
-	opacity: 0.2;
-	transition: opacity 600ms;
+    opacity: 0.2;
+    transition: opacity 600ms;
+}
+
+header {
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+    overflow: auto;
+
+    background: #ccc;
+}
+
+article {
+    margin: 1em;
+}
+
+/* navigation */
+nav ol {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+nav a {
+    padding: 1em;
+
+    text-decoration: none;
+}
+
+nav li {
+    display: inline;
+}
+
+nav li a {
+    background: #ddd;
+    color: #444;
+}
+
+nav a.active {
+    background: #444;
+    color: #eee;
 }
