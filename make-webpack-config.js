@@ -57,8 +57,7 @@ module.exports = function(options) {
         pathinfo: options.debug,
     };
     var excludeFromStats = [
-        /node_modules[\\\/]react(-router)?[\\\/]/,
-        /node_modules[\\\/]items-store[\\\/]/
+        /node_modules[\\\/]react(-router)?[\\\/]/
     ];
     var plugins = [
         function() {
@@ -80,9 +79,7 @@ module.exports = function(options) {
         aliasLoader['react-proxy$'] = 'react-proxy/unavailable';
         externals.push(
             /^react(\/.*)?$/,
-            /^reflux(\/.*)?$/,
-            'superagent',
-            'async'
+            /^reflux(\/.*)?$/
         );
         plugins.push(new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }));
     }
