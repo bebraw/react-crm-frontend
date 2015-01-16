@@ -15,10 +15,6 @@ var Contracts = require('./Contracts');
 var Home = require('./Home');
 
 
-if(!Object.assign) {
-    Object.assign = React.__spread;
-}
-
 module.exports = (
     <Route name='app' path='/' handler={Application}>
         <Route name='dashboard' path='/dashboard' handler={Dashboard} />
