@@ -5,7 +5,6 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var loadersByExtension = require('./config/loadersByExtension');
-var joinEntry = require('./config/joinEntry');
 
 
 module.exports = function(options) {
