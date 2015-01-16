@@ -14,6 +14,11 @@ var Invoices = require('./Registers/Invoices');
 var Contracts = require('./Contracts');
 var Home = require('./Home');
 
+var client = require('./client');
+
+
+// XXX
+client();
 
 module.exports = (
     <Route name='app' path='/' handler={Application}>
