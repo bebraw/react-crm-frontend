@@ -34,12 +34,6 @@ module.exports = function(options) {
         'less': 'css-loader!less-loader',
         'styl': 'css-loader!stylus-loader',
         'sass': 'css-loader!sass-loader',
-    }
-    var additionalLoaders = [
-        // { test: /some-reg-exp$/, loader: 'any-loader' }
-    ];
-    var alias = {
-
     };
     var aliasLoader = {
 
@@ -144,8 +138,7 @@ module.exports = function(options) {
         resolve: {
             root: root,
             modulesDirectories: modulesDirectories,
-            extensions: extensions,
-            alias: alias,
+            extensions: extensions
         },
         plugins: plugins,
         devServer: {
