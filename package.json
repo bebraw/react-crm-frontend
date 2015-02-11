@@ -27,6 +27,7 @@
     "express": "4.11.0",
     "extract-text-webpack-plugin": "0.3.8",
     "html-loader": "0.2.3",
+    "json-loader": "^0.5.1",
     "jsx-loader": "0.12.2",
     "less": "2.2.0",
     "less-loader": "2.0.0",
