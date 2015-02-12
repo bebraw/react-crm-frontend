@@ -2,14 +2,16 @@
 var React = require('react');
 
 
-var Clients = React.createClass({
-    render: function() {
-        return <div>
-            <h2>Clients</h2>
+module.exports = function(api) {
+    var actions = require('./actions')(api);
 
-            <p>This should show clients</p>
-        </div>;
-    }
-});
+    return React.createClass({
+        render: function() {
+            return <div>
+                <h2>Clients</h2>
 
-module.exports = Clients;
+                <p>This should show clients</p>
+            </div>;
+        }
+    });
+};

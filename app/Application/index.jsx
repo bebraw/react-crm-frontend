@@ -8,6 +8,7 @@ var Link = ReactRouter.Link;
 require('purecss/pure.css');
 require('./style.css');
 
+
 var Application = React.createClass({
     mixins: [],
     render: function() {
