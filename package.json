@@ -38,6 +38,7 @@
     "react-hot-loader": "1.1.1",
     "react-proxy-loader": "0.3.2",
     "react-router": "0.11.6",
+    "reactabular": "^0.4.1",
     "reflux": "^0.2.5",
     "style-loader": "0.8.3",
     "swagger2client": "0.1.3",
