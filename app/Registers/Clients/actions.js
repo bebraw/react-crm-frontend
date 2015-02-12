@@ -10,6 +10,12 @@ module.exports = function(api) {
     });
 
     Actions.load.listen(function() {
-        api.clients.get().then(this.completed).catch(this.failed);
+        var that = this;
+
+        api.clients.get().then(function(res) {
+            that.completed(res.data);
+        }).catch(this.failed);
     });
+
+    return Actions;
 };
