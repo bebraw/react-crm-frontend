@@ -6,12 +6,11 @@ var Router = require('react-router');
 var routes = require('./routes.jsx');
 
 
-// react-router handles location
+// XXX: yields Uncaught NotFoundError: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.
+// when developing
 routes().then(function(routeDefinition) {
     Router.run(routeDefinition, Router.HistoryLocation, function(Application, state) {
-        React.withContext({}, function() {
-            React.render(<Application />, document.body);
-        });
+        React.render(<Application />, document.body);
     });
 }).catch(function(res) {
     console.error(res);
