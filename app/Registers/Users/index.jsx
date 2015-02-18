@@ -57,15 +57,11 @@ module.exports = function(api) {
                 <Table
                     schema={schema} columns={columns} data={data}
                     onSort={this.setState.bind(this)}
-                    onEdit={this.onEdit}>
+                    onEdit={userActions.update}>
                 </Table>
 
                 <SkyLight ref='modal' title={modal.title}>{modal.content}</SkyLight>
             </div>;
-        },
-
-        onEdit: function(data) {
-            console.log('edited', data);
         },
 
         createNewUser: function() {

@@ -3,13 +3,13 @@ var Reflux = require('reflux');
 
 
 module.exports = function(api) {
+    var asyncChildren = {
+        children: ['completed', 'failed'],
+    };
     var Actions = Reflux.createActions({
-        load: {
-            children: ['completed', 'failed'],
-        },
-        create: {
-            children: ['completed', 'failed'],
-        },
+        load: asyncChildren,
+        create: asyncChildren,
+        update: asyncChildren,
     });
 
     Actions.load.listen(function() {
@@ -26,6 +26,14 @@ module.exports = function(api) {
         api.users.post(data).then(function(res) {
             data.id = res.data.id;
 
+            that.completed(data);
+        }).catch(this.failed);
+    });
+
+    Actions.update.listen(function(data) {
+        var that = this;
+
+        api.users.put(data).then(function() {
             that.completed(data);
         }).catch(this.failed);
     });

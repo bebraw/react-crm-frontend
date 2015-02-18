@@ -1,5 +1,6 @@
 'use strict';
 var Reflux = require('reflux');
+var findIndex = require('lodash.findindex');
 
 
 module.exports = function(actions) {
@@ -12,6 +13,9 @@ module.exports = function(actions) {
 
             this.listenTo(actions.create.completed, this.createCompleted);
             this.listenTo(actions.create.failed, this.createFailed);
+
+            this.listenTo(actions.update.completed, this.updateCompleted);
+            this.listenTo(actions.update.failed, this.updateFailed);
         },
 
         loadCompleted: function(data) {
@@ -29,6 +33,17 @@ module.exports = function(actions) {
             this.trigger(this.data);
         },
         createFailed: function(err) {
+            console.error(err);
+        },
+
+        updateCompleted: function(data) {
+            var i = findIndex(this.data, {id: data.id});
+
+            this.data[i] = data;
+
+            this.trigger(this.data);
+        },
+        updateFailed: function(err) {
             console.error(err);
         },
     });

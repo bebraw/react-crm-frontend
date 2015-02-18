@@ -24,6 +24,7 @@
     "html-loader": "^0.2.3",
     "json-loader": "^0.5.1",
     "jsx-loader": "^0.12.2",
+    "lodash.findindex": "^3.0.0",
     "plexus-form": "^0.1.0",
     "plexus-validate": "0.0.4",
     "purecss": "^0.5.0",
