@@ -5,8 +5,11 @@ var Reflux = require('reflux');
 module.exports = function(api) {
     var Actions = Reflux.createActions({
         load: {
-            children: ['completed', 'failed']
-        }
+            children: ['completed', 'failed'],
+        },
+        create: {
+            children: ['completed', 'failed'],
+        },
     });
 
     Actions.load.listen(function() {
@@ -14,6 +17,16 @@ module.exports = function(api) {
 
         api.users.get().then(function(res) {
             that.completed(res.data);
+        }).catch(this.failed);
+    });
+
+    Actions.create.listen(function(data) {
+        var that = this;
+
+        api.users.post(data).then(function(res) {
+            data.id = res.data.id;
+
+            that.completed(data);
         }).catch(this.failed);
     });
 

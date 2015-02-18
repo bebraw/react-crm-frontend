@@ -85,13 +85,15 @@ module.exports = function(api) {
 
             // TODO: POST to backend and update store
             function onSubmit(data, value, errors) {
-                that.refs.modal.hide();
-
                 if(value === 'Cancel') {
-                    return;
+                    return that.refs.modal.hide();
                 }
 
-                console.log('should create a new user now', data, value, errors);
+                if(!Object.keys(errors).length) {
+                    that.refs.modal.hide();
+
+                    userActions.create(data);
+                }
             }
         },
     });

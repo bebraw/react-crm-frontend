@@ -9,6 +9,9 @@ module.exports = function(actions) {
 
             this.listenTo(actions.load.completed, this.loadCompleted);
             this.listenTo(actions.load.failed, this.loadFailed);
+
+            this.listenTo(actions.create.completed, this.createCompleted);
+            this.listenTo(actions.create.failed, this.createFailed);
         },
 
         loadCompleted: function(data) {
@@ -16,8 +19,16 @@ module.exports = function(actions) {
 
             this.trigger(data);
         },
-
         loadFailed: function(err) {
+            console.error(err);
+        },
+
+        createCompleted: function(data) {
+            this.data.push(data);
+
+            this.trigger(this.data);
+        },
+        createFailed: function(err) {
             console.error(err);
         },
     });
