@@ -85,7 +85,7 @@ module.exports = React.createClass({
                 className='pure-table pure-table-striped'
                 columns={columns}
                 data={data}
-                header={header}></Table>,
+                header={header}></Table>
             <SkyLight ref='modal' title={modal.title}>{modal.content}</SkyLight>
         </div>
     },
