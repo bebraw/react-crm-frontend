@@ -23,6 +23,10 @@ body {
     transition: opacity 600ms;
 }
 
+.controls {
+    margin: 1em;
+}
+
 article {
     margin: 1em;
 }

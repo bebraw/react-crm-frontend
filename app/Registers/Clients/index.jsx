@@ -4,15 +4,18 @@ var Reflux = require('reflux');
 var Table = require('reactabular').Table;
 var titleCase = require('title-case');
 
+var generateTitles = require('../generate_titles');
+
 
 module.exports = function(api) {
     var clientActions = require('./actions')(api);
     var clientStore = require('./store')(clientActions);
 
-    // XXX: maybe it would be nicer to dig this from schema.definitions
-    // -> pass schema as a dependency? alternatively api (swagger2client) could contain it
-    var properties = api.clients.get.responses['200'].schema.items.properties;
-    var columns = Object.keys(properties).map(function(name) {
+    var schema = api.clients.get.responses['200'].schema;
+    schema.type = 'object';
+    schema.properties = generateTitles(schema.properties);
+
+    var columns = Object.keys(schema.properties).map(function(name) {
         return {
             property: name,
             header: titleCase(name),
