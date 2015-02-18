@@ -69,8 +69,6 @@ module.exports = function(api) {
                 createNewUser: 'Create a new user',
             };
 
-            console.log('schema', schema);
-
             this.setState({
                 modal: {
                     title: i18n.createNewUser,
@@ -85,7 +83,6 @@ module.exports = function(api) {
 
             this.refs.modal.show();
 
-            // TODO: deal with validation
             // TODO: hide id
             // TODO: POST to backend and update store
             function onSubmit(data, value, errors) {
