@@ -21,17 +21,19 @@ var api = require('./api');
 module.exports = function() {
     return new Promise(function(resolve, reject) {
         api(url).then(function(api) {
+            var Users = require('./Registers/Users')(api);
             var Clients = require('./Registers/Clients')(api);
 
             resolve(
                 <Route name='app' path='/' handler={Application}>
                     <Route name='dashboard' path='/dashboard' handler={Dashboard} />
                     <Route name='registers' path='/registers' handler={Registers}>
+                        <Route name='users' path='/registers/users' handler={Users} />
                         <Route name='clients' path='/registers/clients' handler={Clients} />
                         <Route name='products' path='/registers/products' handler={Products} />
                         <Route name='invoices' path='/registers/invoices' handler={Invoices} />
 
-                        <DefaultRoute handler={Clients}/>
+                        <DefaultRoute handler={Users}/>
                     </Route>
                     <Route name='contracts' path='/contracts' handler={Contracts} />
 

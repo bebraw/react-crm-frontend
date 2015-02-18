@@ -10,6 +10,9 @@ var Registers = React.createClass({
             <nav className="pure-menu pure-menu-open pure-menu-horizontal secondary">
                 <ol>
                     <li>
+                        <Link to='users'>Users</Link>
+                    </li>
+                    <li>
                         <Link to='clients'>Clients</Link>
                     </li>
                     <li>
