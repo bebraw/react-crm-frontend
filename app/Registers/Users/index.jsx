@@ -83,7 +83,6 @@ module.exports = function(api) {
 
             this.refs.modal.show();
 
-            // TODO: hide id
             // TODO: POST to backend and update store
             function onSubmit(data, value, errors) {
                 that.refs.modal.hide();
