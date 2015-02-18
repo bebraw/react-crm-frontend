@@ -1,7 +1,10 @@
 'use strict';
 var React = require('react');
 var Reflux = require('reflux');
-var Table = require('reactabular').Table;
+
+var reactabular = require('reactabular');
+var Table = reactabular.Table;
+
 var titleCase = require('title-case');
 var Form = require('plexus-form');
 var validate = require('plexus-validate');
@@ -46,6 +49,16 @@ module.exports = function(api) {
 
             var data = this.state.users || [];
             var modal = this.state.modal || {};
+            var header = {
+                onClick: (column) => {
+                    reactabular.sortColumn(
+                        columns,
+                        column,
+                        data,
+                        this.setState.bind(this)
+                    );
+                },
+            };
 
             return <div>
                 <h2>Users</h2>
@@ -56,6 +69,7 @@ module.exports = function(api) {
 
                 <Table
                     className='pure-table pure-table-striped'
+                    header={header}
                     columns={columns}
                     data={data}></Table>
 

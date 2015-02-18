@@ -6,6 +6,7 @@ var RouteHandler = ReactRouter.RouteHandler;
 var Link = ReactRouter.Link;
 
 require('purecss/pure.css');
+require('reactabular/style.css');
 require('./skylight.css');
 require('./style.css');
 
