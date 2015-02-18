@@ -2,14 +2,12 @@
 var React = require('react');
 var Reflux = require('reflux');
 
-var reactabular = require('reactabular');
-var Table = reactabular.Table;
-
 var titleCase = require('title-case');
 var Form = require('plexus-form');
 var validate = require('plexus-validate');
 var SkyLight = require('jsx!react-skylight/src/skylight.jsx');
 
+var Table = require('../Table.jsx');
 var generateTitles = require('../generate_titles');
 
 
@@ -49,16 +47,6 @@ module.exports = function(api) {
 
             var data = this.state.users || [];
             var modal = this.state.modal || {};
-            var header = {
-                onClick: (column) => {
-                    reactabular.sortColumn(
-                        columns,
-                        column,
-                        data,
-                        this.setState.bind(this)
-                    );
-                },
-            };
 
             return <div>
                 <h2>Users</h2>
@@ -67,11 +55,7 @@ module.exports = function(api) {
                 <button onClick={this.createNewUser}>{i18n.createNewUser}</button>
                 </div>
 
-                <Table
-                    className='pure-table pure-table-striped'
-                    header={header}
-                    columns={columns}
-                    data={data}></Table>
+                <Table columns={columns} data={data} onSort={this.setState.bind(this)}></Table>
 
                 <SkyLight ref='modal' title={modal.title}>{modal.content}</SkyLight>
             </div>;
