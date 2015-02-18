@@ -1,7 +1,6 @@
 'use strict';
 var React = require('react');
 var Reflux = require('reflux');
-
 var titleCase = require('title-case');
 var Form = require('plexus-form');
 var validate = require('plexus-validate');
@@ -55,10 +54,18 @@ module.exports = function(api) {
                 <button onClick={this.createNewUser}>{i18n.createNewUser}</button>
                 </div>
 
-                <Table columns={columns} data={data} onSort={this.setState.bind(this)}></Table>
+                <Table
+                    schema={schema} columns={columns} data={data}
+                    onSort={this.setState.bind(this)}
+                    onEdit={this.onEdit}>
+                </Table>
 
                 <SkyLight ref='modal' title={modal.title}>{modal.content}</SkyLight>
             </div>;
+        },
+
+        onEdit: function(data) {
+            console.log('edited', data);
         },
 
         createNewUser: function() {
