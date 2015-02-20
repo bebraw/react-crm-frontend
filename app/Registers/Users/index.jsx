@@ -93,6 +93,8 @@ module.exports = function(api) {
                 if(!Object.keys(errors).length) {
                     that.refs.modal.hide();
 
+                    delete data.id;
+
                     userActions.create(data);
                 }
             }
