@@ -11,32 +11,27 @@ module.exports = function(actions) {
             this.count = 0; // TODO: deal with this -> transmit to listeners
 
             this.listenTo(actions.load.completed, this.loadCompleted);
-            this.listenTo(actions.load.failed, this.loadFailed);
+            this.listenTo(actions.load.failed, this.failed);
 
             this.listenTo(actions.create.completed, this.createCompleted);
-            this.listenTo(actions.create.failed, this.createFailed);
+            this.listenTo(actions.create.failed, this.failed);
 
             this.listenTo(actions.update.completed, this.updateCompleted);
-            this.listenTo(actions.update.failed, this.updateFailed);
+            this.listenTo(actions.update.failed, this.failed);
         },
 
         loadCompleted: function(o) {
             this.data = o.data;
             this.count = o.count;
 
-            this.trigger(this.data);
-        },
-        loadFailed: function(err) {
-            console.error(err);
+            this.refresh();
         },
 
         createCompleted: function(data) {
+            // XXX: this might not be ok always (if paginated)
             this.data.push(data);
 
-            this.trigger(this.data);
-        },
-        createFailed: function(err) {
-            console.error(err);
+            this.refresh();
         },
 
         updateCompleted: function(data) {
@@ -44,10 +39,21 @@ module.exports = function(actions) {
 
             this.data[i] = data;
 
-            this.trigger(this.data);
+            this.refresh();
         },
-        updateFailed: function(err) {
+
+        failed: function(err) {
             console.error(err);
         },
+
+        refresh: function() {
+            this.trigger(this.data);
+            /*
+            this.trigger({
+                data: this.data,
+                count: this.count,
+            });
+            */
+        }
     });
 };
