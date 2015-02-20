@@ -84,7 +84,6 @@ module.exports = function(api) {
 
             this.refs.modal.show();
 
-            // TODO: POST to backend and update store
             function onSubmit(data, value, errors) {
                 if(value === 'Cancel') {
                     return that.refs.modal.hide();
