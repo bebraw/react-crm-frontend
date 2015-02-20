@@ -16,30 +16,39 @@ module.exports = React.createClass({
     mixins: [Reflux.ListenerMixin],
 
     getInitialState() {
+        var perPage = 10;
+        var actions = this.props.actions;
+
         this.listenTo(this.props.store, this.onData);
 
+        actions.load({
+            perPage: perPage,
+        });
+
         return {
-            data: [],
+            store: {
+                data: [],
+                count: 0,
+            },
             modal: {
                 title: null,
                 content: null,
             },
             pagination: {
                 page: 0,
-                perPage: 5
+                perPage: perPage,
             },
         };
     },
 
-    onData(data) {
+    onData(store) {
         this.setState({
-            data: data,
+            store: store,
         });
     },
 
     render() {
         var schema = this.props.schema || {};
-        var data = this.state.data || [];
         var columns = this.props.columns || [];
         var header = {
             onClick: (column) => {
@@ -51,8 +60,9 @@ module.exports = React.createClass({
                 );
             },
         };
-        var modal = this.state.modal || {};
-        var pagination = this.state.pagination || {};
+        var store = this.state.store;
+        var modal = this.state.modal;
+        var pagination = this.state.pagination;
 
         columns = columns.concat({
             cell: this.editCell,
@@ -62,11 +72,11 @@ module.exports = React.createClass({
             <Table
                 className='pure-table pure-table-striped'
                 columns={columns}
-                data={data}
+                data={store.data}
                 header={header} />
             <Paginator
                 page={pagination.page}
-                pages={pagination.amount}
+                pages={Math.ceil(store.count / pagination.perPage)}
                 beginPages='3'
                 endPages='3'
                 onSelect={this.onSelectPage} />
@@ -75,15 +85,21 @@ module.exports = React.createClass({
     },
 
     onSelectPage(page) {
-        console.log('selected page', page);
+        var pagination = this.state.pagination;
+
+        this.props.actions.load(pagination);
+
+        pagination.page = page;
+
+        this.setState({
+            pagination: pagination,
+        });
     },
 
     editCell(property, value, rowIndex, columnIndex) {
         var edit = () => {
             this.refs.modal.show();
 
-            var data = this.state.data || [];
-            var schema = this.props.schema || {};
             var onSubmit = (data, value, errors) => {
                 this.refs.modal.hide();
 
@@ -94,12 +110,12 @@ module.exports = React.createClass({
                 if(!Object.keys(errors).length) {
                     this.refs.modal.hide();
 
-                    var actions = this.props.actions;
-
-                    actions && actions.update(data);
+                    this.props.actions.update(data);
                 }
             };
 
+            var schema = this.props.schema || {};
+            var data = this.store.data;
             this.setState({
                 modal: {
                     title: 'Edit',

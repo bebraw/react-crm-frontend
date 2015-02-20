@@ -26,14 +26,7 @@ module.exports = function(api) {
 
     return React.createClass({
         getInitialState: function() {
-            var perPage = 10;
-
-            userActions.load({
-                perPage: perPage,
-            });
-
             return {
-                perPage: perPage,
                 modal: {
                     title: null,
                     content: null,

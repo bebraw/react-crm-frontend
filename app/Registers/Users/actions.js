@@ -15,13 +15,7 @@ module.exports = function(api) {
     Actions.load.listen(function(o) {
         var that = this;
 
-        api.users.get({
-            perPage: o.perPage,
-        }).then(function(res) {
-            // TODO: deal with pagination
-            // params - perPage (defaults to 10), page
-            // count always in `total-count`
-
+        api.users.get(o).then(function(res) {
             that.completed({
                 count: res.headers['total-count'],
                 data: res.data

@@ -6,9 +6,8 @@ var findIndex = require('lodash.findindex');
 module.exports = function(actions) {
     return Reflux.createStore({
         init: function() {
-            // data is a partial store due to pagination. it is updated as data is received
             this.data = [];
-            this.count = 0; // TODO: deal with this -> transmit to listeners
+            this.count = 0;
 
             this.listenTo(actions.load.completed, this.loadCompleted);
             this.listenTo(actions.load.failed, this.failed);
@@ -30,6 +29,7 @@ module.exports = function(actions) {
         createCompleted: function(data) {
             // XXX: this might not be ok always (if paginated)
             this.data.push(data);
+            this.count++;
 
             this.refresh();
         },
@@ -47,13 +47,10 @@ module.exports = function(actions) {
         },
 
         refresh: function() {
-            this.trigger(this.data);
-            /*
             this.trigger({
                 data: this.data,
                 count: this.count,
             });
-            */
         }
     });
 };
