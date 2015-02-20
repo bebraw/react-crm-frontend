@@ -12,11 +12,20 @@ module.exports = function(api) {
         update: asyncChildren,
     });
 
-    Actions.load.listen(function() {
+    Actions.load.listen(function(o) {
         var that = this;
 
-        api.users.get().then(function(res) {
-            that.completed(res.data);
+        api.users.get({
+            perPage: o.perPage,
+        }).then(function(res) {
+            // TODO: deal with pagination
+            // params - perPage (defaults to 10), page
+            // count always in `total-count`
+
+            that.completed({
+                count: res.headers['total-count'],
+                data: res.data
+            });
         }).catch(this.failed);
     });
 

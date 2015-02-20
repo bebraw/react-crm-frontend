@@ -7,6 +7,7 @@ var Link = ReactRouter.Link;
 
 require('purecss/pure.css');
 require('reactabular/style.css');
+require('react-pagify/style.css');
 require('./skylight.css');
 require('./style.css');
 

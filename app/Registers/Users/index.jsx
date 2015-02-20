@@ -1,6 +1,5 @@
 'use strict';
 var React = require('react');
-var Reflux = require('reflux');
 var titleCase = require('title-case');
 var Form = require('plexus-form');
 var validate = require('plexus-validate');
@@ -26,12 +25,15 @@ module.exports = function(api) {
     });
 
     return React.createClass({
-        mixins: [Reflux.connect(userStore, 'users')],
-
         getInitialState: function() {
-            userActions.load();
+            var perPage = 10;
+
+            userActions.load({
+                perPage: perPage,
+            });
 
             return {
+                perPage: perPage,
                 modal: {
                     title: null,
                     content: null,
@@ -47,6 +49,7 @@ module.exports = function(api) {
             var data = this.state.users || [];
             var modal = this.state.modal || {};
 
+            // TODO: eliminate onSort
             return <div>
                 <h2>Users</h2>
 
@@ -55,9 +58,9 @@ module.exports = function(api) {
                 </div>
 
                 <Table
-                    schema={schema} columns={columns} data={data}
-                    onSort={this.setState.bind(this)}
-                    onEdit={userActions.update}>
+                    store={userStore} actions={userActions}
+                    schema={schema} columns={columns}
+                    onSort={this.setState.bind(this)}>
                 </Table>
 
                 <SkyLight ref='modal' title={modal.title}>{modal.content}</SkyLight>
