@@ -8,7 +8,7 @@ Frontend of Koodilehto CRM.
 
 1. Set up and run backend (defaults to port 3000)
 2. `npm install`
-3. `npm run dev`
+3. `npm start`
 4. Surf to `http://localhost:4000/`
 
 ## License
