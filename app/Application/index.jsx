@@ -15,8 +15,23 @@ require('./style.css');
 
 var MenuLink = React.createClass({
     render: function() {
-        return <Link className='pure-menu-link' to={this.props.to}>{this.props.children}</Link>;
-    }
+        return (
+            <Link className='pure-menu-link' to={this.props.to}>
+                {this.props.children}
+            </Link>
+        );
+    },
+});
+
+// TODO: set pure-menu-selected on li when Link is clicked
+var MenuItem = React.createClass({
+    render: function() {
+        return (
+            <li className='pure-menu-item'>
+                <MenuLink to={this.props.to}>{this.props.children}</MenuLink>
+            </li>
+        );
+    },
 });
 
 var Application = React.createClass({
@@ -29,15 +44,9 @@ var Application = React.createClass({
                     <a className='pure-menu-heading' href='#'>Koodilehto</a>
 
                     <ul className='pure-menu-list'>
-                        <li className='pure-menu-item pure-menu-selected'>
-                            <MenuLink to='dashboard'>Dashboard</MenuLink>
-                        </li>
-                        <li className='pure-menu-item'>
-                            <MenuLink to='registers'>Registers</MenuLink>
-                        </li>
-                        <li className='pure-menu-item'>
-                            <MenuLink to='contracts'>Contracts</MenuLink>
-                        </li>
+                        <MenuItem to='dashboard'>Dashboard</MenuItem>
+                        <MenuItem to='registers'>Registers</MenuItem>
+                        <MenuItem to='contracts'>Contracts</MenuItem>
                     </ul>
                 </div>
             </div>
