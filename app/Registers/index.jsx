@@ -4,6 +4,7 @@ var ReactRouter = require('react-router');
 var RouteHandler = ReactRouter.RouteHandler;
 
 var Menu = require('../lib/menu.jsx');
+var MenuLink = require('../lib/common.jsx').MenuLink;
 
 
 module.exports = React.createClass({
@@ -13,10 +14,18 @@ module.exports = React.createClass({
                 <h1>Registers</h1>
                 <Menu className='pure-menu-horizontal'>
                     <Menu.List>
-                        <Menu.Item to='users'>Users</Menu.Item>
-                        <Menu.Item to='clients'>Clients</Menu.Item>
-                        <Menu.Item to='products'>Products</Menu.Item>
-                        <Menu.Item to='invoices'>Invoices</Menu.Item>
+                        <Menu.Item>
+                            <MenuLink to='users'>Users</MenuLink>
+                        </Menu.Item>
+                        <Menu.Item>
+                            <MenuLink to='clients'>Clients</MenuLink>
+                        </Menu.Item>
+                        <Menu.Item>
+                            <MenuLink to='products'>Products</MenuLink>
+                        </Menu.Item>
+                        <Menu.Item>
+                            <MenuLink to='invoices'>Invoices</MenuLink>
+                        </Menu.Item>
                     </Menu.List>
                 </Menu>
             </div>

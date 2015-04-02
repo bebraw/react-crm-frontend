@@ -4,6 +4,7 @@ var ReactRouter = require('react-router');
 var RouteHandler = ReactRouter.RouteHandler;
 
 var Menu = require('../lib/menu.jsx');
+var MenuLink = require('../lib/common.jsx').MenuLink;
 
 require('purecss/build/pure.css');
 require('reactabular/style.css');
@@ -23,9 +24,15 @@ var Application = React.createClass({
                     <Menu.Heading>Koodilehto</Menu.Heading>
 
                     <Menu.List>
-                        <Menu.Item to='dashboard'>Dashboard</Menu.Item>
-                        <Menu.Item to='registers'>Registers</Menu.Item>
-                        <Menu.Item to='contracts'>Contracts</Menu.Item>
+                        <Menu.Item>
+                            <MenuLink to='dashboard'>Dashboard</MenuLink>
+                        </Menu.Item>
+                        <Menu.Item>
+                            <MenuLink to='registers'>Registers</MenuLink>
+                        </Menu.Item>
+                        <Menu.Item>
+                            <MenuLink to='contracts'>Contracts</MenuLink>
+                        </Menu.Item>
                     </Menu.List>
                 </Menu>
             </div>

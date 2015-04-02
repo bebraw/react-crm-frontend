@@ -1,8 +1,6 @@
 'use strict';
 var classNames = require('classnames');
 var React = require('react');
-var ReactRouter = require('react-router');
-var Link = ReactRouter.Link;
 
 
 module.exports = React.createClass({
@@ -35,26 +33,24 @@ module.exports.Heading = React.createClass({
     },
 });
 
-var MenuLink = React.createClass({
-    render: function() {
-        var {className, ...props} = this.props;
-
-        return (
-            <Link className={classNames('pure-menu-link', className)} to={props.to} {...props}>
-                {props.children}
-            </Link>
-        );
-    },
-});
-
 module.exports.Item = React.createClass({
     render: function() {
         var {className, ...props} = this.props;
 
         return (
-            <li className={classNames('pure-menu-item', className)} {...props}>
-                <MenuLink to={props.to}>{props.children}</MenuLink>
-            </li>
+            <li className={classNames('pure-menu-item', className)} {...props}>{props.children}</li>
+        );
+    },
+});
+
+exports.Link = React.createClass({
+    render: function() {
+        var {className, ...props} = this.props;
+
+        return (
+            <a className={classNames('pure-menu-link', className)} {...props}>
+                {props.children}
+            </a>
         );
     },
 });
