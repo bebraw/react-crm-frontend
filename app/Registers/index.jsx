@@ -2,14 +2,23 @@
 var React = require('react');
 var ReactRouter = require('react-router');
 var RouteHandler = ReactRouter.RouteHandler;
-var Link = ReactRouter.Link;
 
-var Registers = React.createClass({
+var Menu = require('../lib/menu.jsx');
+
+
+module.exports = React.createClass({
     render: function() {
         return <div>
             <div className='header'>
                 <h1>Registers</h1>
-                <h2>Subtitle</h2>
+                <Menu className='pure-menu-horizontal'>
+                    <Menu.List>
+                        <Menu.Item to='users'>Users</Menu.Item>
+                        <Menu.Item to='clients'>Clients</Menu.Item>
+                        <Menu.Item to='products'>Products</Menu.Item>
+                        <Menu.Item to='invoices'>Invoices</Menu.Item>
+                    </Menu.List>
+                </Menu>
             </div>
 
             <div className='content'>
@@ -18,25 +27,3 @@ var Registers = React.createClass({
         </div>;
     }
 });
-
-module.exports = Registers;
-
-// TODO: add links to different registers
-/*
-<nav className="pure-menu pure-menu-open pure-menu-horizontal secondary">
-    <ol>
-        <li>
-            <Link to='users'>Users</Link>
-        </li>
-        <li>
-            <Link to='clients'>Clients</Link>
-        </li>
-        <li>
-            <Link to='products'>Products</Link>
-        </li>
-        <li>
-            <Link to='invoices'>Invoices</Link>
-        </li>
-    </ol>
-</nav>
- */
