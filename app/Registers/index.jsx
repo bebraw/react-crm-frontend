@@ -3,7 +3,7 @@ var React = require('react');
 var ReactRouter = require('react-router');
 var RouteHandler = ReactRouter.RouteHandler;
 
-var Menu = require('../lib/menu.jsx');
+var Menu = require('react-pure-menu');
 var MenuLink = require('../lib/common.jsx').MenuLink;
 
 
