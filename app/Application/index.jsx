@@ -28,8 +28,32 @@ var MenuItem = React.createClass({
     render: function() {
         return (
             <li className='pure-menu-item'>
-                <MenuLink to={this.props.to}>{this.props.children}</MenuLink>
+                <MenuLink to={this.props.to} {...this.props.children}>{this.props.children}</MenuLink>
             </li>
+        );
+    },
+});
+
+var MenuHeading = React.createClass({
+    render: function() {
+        return (
+            <span className='pure-menu-heading' {...this.props.children}>{this.props.children}</span>
+        );
+    },
+});
+
+var MenuList = React.createClass({
+    render: function() {
+        return (
+            <ul className='pure-menu-list' {...this.props.children}>{this.props.children}</ul>
+        );
+    },
+});
+
+var Menu = React.createClass({
+    render: function() {
+        return (
+            <div className='pure-menu' {...this.props.children}>{this.props.children}</div>
         );
     },
 });
@@ -40,15 +64,15 @@ var Application = React.createClass({
             <a href='#menu' id='menuLink' className='menu-link'><span /></a>
 
             <div id='menu'>
-                <div className='pure-menu'>
-                    <a className='pure-menu-heading' href='#'>Koodilehto</a>
+                <Menu>
+                    <MenuHeading>Koodilehto</MenuHeading>
 
-                    <ul className='pure-menu-list'>
+                    <MenuList>
                         <MenuItem to='dashboard'>Dashboard</MenuItem>
                         <MenuItem to='registers'>Registers</MenuItem>
                         <MenuItem to='contracts'>Contracts</MenuItem>
-                    </ul>
-                </div>
+                    </MenuList>
+                </Menu>
             </div>
 
             <div id='main'>
