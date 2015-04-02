@@ -18,6 +18,7 @@
     "annozip": "^0.2.6",
     "axios": "^0.5.2",
     "body-parser": "^1.12.2",
+    "classnames": "^1.2.0",
     "css-loader": "^0.9.1",
     "es6-promise": "^2.0.1",
     "express": "^4.12.3",

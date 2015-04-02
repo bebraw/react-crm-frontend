@@ -1,4 +1,5 @@
 'use strict';
+var classNames = require('classnames');
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
@@ -6,33 +7,41 @@ var Link = ReactRouter.Link;
 
 module.exports = React.createClass({
     render: function() {
+        var {className, ...props} = this.props;
+
         return (
-            <div className='pure-menu' {...this.props.children}>{this.props.children}</div>
+            <div className={classNames('pure-menu', className)} {...props}>{props.children}</div>
         );
     },
 });
 
 module.exports.List = React.createClass({
     render: function() {
+        var {className, ...props} = this.props;
+
         return (
-            <ul className='pure-menu-list' {...this.props.children}>{this.props.children}</ul>
+            <ul className={classNames('pure-menu-list', className)} {...props}>{props.children}</ul>
         );
     },
 });
 
 module.exports.Heading = React.createClass({
     render: function() {
+        var {className, ...props} = this.props;
+
         return (
-            <span className='pure-menu-heading' {...this.props.children}>{this.props.children}</span>
+            <span className={classNames('pure-menu-heading', className)}  {...props}>{props.children}</span>
         );
     },
 });
 
 var MenuLink = React.createClass({
     render: function() {
+        var {className, ...props} = this.props;
+
         return (
-            <Link className='pure-menu-link' to={this.props.to}>
-                {this.props.children}
+            <Link className={classNames('pure-menu-link', className)} to={props.to} {...props}>
+                {props.children}
             </Link>
         );
     },
@@ -40,9 +49,11 @@ var MenuLink = React.createClass({
 
 module.exports.Item = React.createClass({
     render: function() {
+        var {className, ...props} = this.props;
+
         return (
-            <li className='pure-menu-item'>
-                <MenuLink to={this.props.to} {...this.props.children}>{this.props.children}</MenuLink>
+            <li className={classNames('pure-menu-item', className)} {...props}>
+                <MenuLink to={props.to}>{props.children}</MenuLink>
             </li>
         );
     },
