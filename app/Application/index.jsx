@@ -9,34 +9,36 @@ require('purecss/build/pure.css');
 require('reactabular/style.css');
 require('react-pagify/style.css');
 require('./skylight.css');
+require('./side-menu.css');
 require('./style.css');
 
 
 var Application = React.createClass({
-    mixins: [],
     render: function() {
-        return <div className='pure-g main'>
-            <header className='pure-u-1'>
-                <nav className="pure-menu pure-menu-open pure-menu-horizontal primary">
-                    <ol>
-                        <li>
-                            <Link to='dashboard'>Dashboard</Link>
-                        </li>
-                        <li>
-                            <Link to='registers'>Registers</Link>
-                        </li>
-                        <li>
-                            <Link to='contracts'>Contracts</Link>
-                        </li>
-                    </ol>
-                </nav>
-            </header>
+        return <div id='layout'>
+            <a href='#menu' id='menuLink' className='menu-link'><span /></a>
 
-            <article className='pure-u-1'>
+            <div id='menu'>
+                <div className='pure-menu'>
+                    <a className='pure-menu-heading' href='#'>Koodilehto</a>
+
+                    <ul className='pure-menu-list'>
+                        <li className='pure-menu-item pure-menu-selected'>
+                            <Link className='pure-menu-link' to='dashboard'>Dashboard</Link>
+                        </li>
+                        <li className='pure-menu-item'>
+                            <Link className='pure-menu-link' to='registers'>Registers</Link>
+                        </li>
+                        <li className='pure-menu-item'>
+                            <Link className='pure-menu-link' to='contracts'>Contracts</Link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id='main'>
                 <RouteHandler />
-            </article>
-
-            <footer className='pure-u-1'><p>footer</p></footer>
+            </div>
         </div>;
     }
 });

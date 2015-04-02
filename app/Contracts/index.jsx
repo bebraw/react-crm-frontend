@@ -5,9 +5,14 @@ var React = require('react');
 var Contracts = React.createClass({
     render: function() {
         return <div>
-            <h2>Contracts</h2>
+            <div className='header'>
+                <h1>Contracts</h1>
+                <h2>This should show contracts</h2>
+            </div>
 
-            <p>This should show contracts</p>
+            <div className='content'>
+                TODO
+            </div>
         </div>;
     }
 });

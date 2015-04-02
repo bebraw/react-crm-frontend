@@ -1,62 +1,10 @@
 body {
-    background: #dedede;
-
     font-family: Sans-Serif;
 
     line-height: 1.5;
 }
 
-.main {
-    background: #fefefe;
-
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 768px;
-}
-
-.application {
-    opacity: 1;
-}
-
-.application.loading {
-    opacity: 0.2;
-    transition: opacity 600ms;
-}
-
-.controls {
-    margin: 1em;
-}
-
-.error {
-    border: 1px solid #ffaaaa;
-}
-
-article {
-    margin: 1em;
-}
-
-nav {
-    background: #eee !important;
-}
-
-nav.secondary {
-    background: #ddd !important;
-
-    margin-left: -1em;
-    padding-right: 2em;
-    margin-top: -1em;
-}
-
-footer {
-    background: #eee;
-
-    padding: 1em;
-}
-
-nav ol {
-    margin: 0;
-}
-
-a.active {
-    background: #ccc;
+/* XXX: fix menu item height, not sure why it scales to 100% by default */
+.pure-menu-item {
+    height: inherit;
 }
