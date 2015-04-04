@@ -1,11 +1,10 @@
 'use strict';
 var React = require('react');
 var titleCase = require('title-case');
-var Form = require('plexus-form');
-var validate = require('plexus-validate');
 var SkyLight = require('jsx!react-skylight/src/skylight.jsx');
 var Button = require('react-pure-button');
 
+var Form = require('lib/Form.jsx');
 var Table = require('lib/Table.jsx');
 var generateTitles = require('lib/generate_titles');
 
@@ -47,22 +46,23 @@ module.exports = function(api) {
 
             // TODO: eliminate onSort
             return (
-                <div className='pure-g'>
-                    <div className='pure-u-1'>
-                        <h2>Users</h2>
-                    </div>
+                <div>
+                    <div className='pure-g'>
+                        <div className='pure-u-1'>
+                            <h2>Users</h2>
+                        </div>
 
-                    <div className='pure-u-1 controls'>
-                        <Button onClick={this.createNewUser}>{i18n.createNewUser}</Button>
-                    </div>
+                        <div className='pure-u-1 controls'>
+                            <Button onClick={this.createNewUser}>{i18n.createNewUser}</Button>
+                        </div>
 
-                    <div className='pure-u-1'>
-                        <Table
-                            store={userStore} actions={userActions}
-                            schema={schema} columns={columns}
-                            onSort={this.setState.bind(this)} />
+                        <div className='pure-u-1'>
+                            <Table
+                                store={userStore} actions={userActions}
+                                schema={schema} columns={columns}
+                                onSort={this.setState.bind(this)} />
+                        </div>
                     </div>
-
                     <SkyLight ref='modal' title={modal.title}>{modal.content}</SkyLight>
                 </div>
             );
@@ -78,9 +78,7 @@ module.exports = function(api) {
                 modal: {
                     title: i18n.createNewUser,
                     content: <Form
-                        buttons={['OK', 'Cancel']}
                         schema={schema}
-                        validate={validate}
                         onSubmit={onSubmit}
                     />
                 }

@@ -7,9 +7,9 @@ var reactabular = require('reactabular');
 var Table = reactabular.Table;
 //var sortColumns = reactabular.sortColumns;
 
-var Form = require('plexus-form');
-var validate = require('plexus-validate');
 var Paginator = require('react-pagify');
+
+var Form = require('lib/Form');
 
 
 module.exports = React.createClass({
@@ -132,9 +132,7 @@ module.exports = React.createClass({
                 modal: {
                     title: 'Edit',
                     content: <Form
-                        buttons={['OK', 'Cancel']}
                         schema={schema}
-                        validate={validate}
                         values={data[rowIndex]}
                         onSubmit={onSubmit}
                     />
