@@ -6,8 +6,8 @@ var validate = require('plexus-validate');
 var SkyLight = require('jsx!react-skylight/src/skylight.jsx');
 var Button = require('react-pure-button');
 
-var Table = require('../Table.jsx');
-var generateTitles = require('../generate_titles');
+var Table = require('lib/Table.jsx');
+var generateTitles = require('lib/generate_titles');
 
 
 module.exports = function(api) {

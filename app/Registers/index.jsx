@@ -4,7 +4,7 @@ var ReactRouter = require('react-router');
 var RouteHandler = ReactRouter.RouteHandler;
 
 var Menu = require('react-pure-menu');
-var MenuLink = require('../lib/common.jsx').MenuLink;
+var MenuLink = require('lib/common.jsx').MenuLink;
 
 
 module.exports = React.createClass({

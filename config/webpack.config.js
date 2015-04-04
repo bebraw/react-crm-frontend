@@ -1,4 +1,6 @@
 'use strict';
+var path = require('path');
+
 var extend = require('xtend');
 var webpack = require('webpack');
 
@@ -12,6 +14,12 @@ module.exports = extend(common, {
         'webpack/hot/only-dev-server',
         './app/index',
     ],
+    resolve: {
+        extensions: common.resolve.extensions,
+        alias: {
+            'lib': path.join(__dirname, '../app/lib'),
+        }
+    },
     output: {
         path: __dirname,
         filename: 'bundle.js',

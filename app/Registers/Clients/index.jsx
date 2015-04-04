@@ -4,7 +4,7 @@ var Reflux = require('reflux');
 var Table = require('reactabular').Table;
 var titleCase = require('title-case');
 
-var generateTitles = require('../generate_titles');
+var generateTitles = require('lib/generate_titles');
 
 
 module.exports = function(api) {
