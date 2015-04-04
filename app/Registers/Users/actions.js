@@ -14,10 +14,8 @@ module.exports = function(api) {
     });
 
     Actions.load.listen(function(o) {
-        var that = this;
-
-        api.users.get(o).then(function(res) {
-            that.completed({
+        api.users.get(o).then((res) => {
+            this.completed({
                 count: res.headers['total-count'],
                 data: res.data
             });
@@ -25,21 +23,15 @@ module.exports = function(api) {
     });
 
     Actions.create.listen(function(data) {
-        var that = this;
-
-        api.users.post(data).then(function(res) {
+        api.users.post(data).then((res) => {
             data.id = res.data.id;
 
-            that.completed(data);
+            this.completed(data);
         }).catch(this.failed);
     });
 
     Actions.update.listen(function(data) {
-        var that = this;
-
-        api.users.put(data).then(function() {
-            that.completed(data);
-        }).catch(this.failed);
+        api.users.put(data).then(() => this.completed(data)).catch(this.failed);
     });
 
     Actions.sortBy.listen((data) => {
