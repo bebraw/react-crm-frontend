@@ -4,6 +4,10 @@ body {
     line-height: 1.5;
 }
 
+.controls {
+    margin-bottom: 1em;
+}
+
 /* XXX: fix menu item height, not sure why it scales to 100% by default */
 .pure-menu-item {
     height: inherit;

@@ -4,6 +4,7 @@ var titleCase = require('title-case');
 var Form = require('plexus-form');
 var validate = require('plexus-validate');
 var SkyLight = require('jsx!react-skylight/src/skylight.jsx');
+var Button = require('react-pure-button');
 
 var Table = require('../Table.jsx');
 var generateTitles = require('../generate_titles');
@@ -46,17 +47,21 @@ module.exports = function(api) {
 
             // TODO: eliminate onSort
             return (
-                <div>
-                    <h2>Users</h2>
-
-                    <div className='controls'>
-                    <button onClick={this.createNewUser}>{i18n.createNewUser}</button>
+                <div className='pure-g'>
+                    <div className='pure-u-1'>
+                        <h2>Users</h2>
                     </div>
 
-                    <Table
-                        store={userStore} actions={userActions}
-                        schema={schema} columns={columns}
-                        onSort={this.setState.bind(this)} />
+                    <div className='pure-u-1 controls'>
+                        <Button onClick={this.createNewUser}>{i18n.createNewUser}</Button>
+                    </div>
+
+                    <div className='pure-u-1'>
+                        <Table
+                            store={userStore} actions={userActions}
+                            schema={schema} columns={columns}
+                            onSort={this.setState.bind(this)} />
+                    </div>
 
                     <SkyLight ref='modal' title={modal.title}>{modal.content}</SkyLight>
                 </div>
