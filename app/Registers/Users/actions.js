@@ -10,6 +10,7 @@ module.exports = function(api) {
         load: asyncChildren,
         create: asyncChildren,
         update: asyncChildren,
+        sortBy: asyncChildren,
     });
 
     Actions.load.listen(function(o) {
@@ -39,6 +40,10 @@ module.exports = function(api) {
         api.users.put(data).then(function() {
             that.completed(data);
         }).catch(this.failed);
+    });
+
+    Actions.sortBy.listen((data) => {
+        console.log('sort by', data);
     });
 
     return Actions;

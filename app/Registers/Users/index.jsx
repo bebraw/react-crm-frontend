@@ -41,10 +41,8 @@ module.exports = function(api) {
                 createNewUser: 'Create a new user',
             };
 
-            //var data = this.state.users || [];
             var modal = this.state.modal || {};
 
-            // TODO: eliminate onSort
             return (
                 <div>
                     <div className='pure-g'>
@@ -59,8 +57,7 @@ module.exports = function(api) {
                         <div className='pure-u-1'>
                             <Table
                                 store={userStore} actions={userActions}
-                                schema={schema} columns={columns}
-                                onSort={this.setState.bind(this)} />
+                                schema={schema} columns={columns} />
                         </div>
                     </div>
                     <SkyLight ref='modal' title={modal.title}>{modal.content}</SkyLight>

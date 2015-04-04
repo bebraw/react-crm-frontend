@@ -58,16 +58,10 @@ module.exports = React.createClass({
     },
 
     render() {
-        //var schema = this.props.schema || {};
         var columns = this.props.columns || [];
         var header = {
             onClick: (column) => {
-                reactabular.sortColumn(
-                    columns,
-                    column,
-                    //data,
-                    this.props.onSort
-                );
+                this.props.actions.sortBy(column.property);
             },
         };
         var store = this.state.store;
