@@ -127,7 +127,7 @@ module.exports = React.createClass({
             };
 
             var schema = this.props.schema || {};
-            var data = this.store.data;
+            var data = this.props.store.data;
             this.setState({
                 modal: {
                     title: 'Edit',
