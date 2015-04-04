@@ -14,33 +14,36 @@ require('./side-menu.css');
 require('./style.css');
 
 
-var Application = React.createClass({
-    render: function() {
-        return <div id='layout'>
-            <a href='#menu' id='menuLink' className='menu-link'><span /></a>
+module.exports = React.createClass({
+    displayName: 'Application',
 
-            <div id='menu'>
-                <Menu>
-                    <Menu.Heading>Koodilehto</Menu.Heading>
+    render() {
+        return (
+            <div id='layout'>
+                <a href='#menu' id='menuLink' className='menu-link'><span /></a>
 
-                    <Menu.List>
-                        <Menu.Item>
-                            <MenuLink to='dashboard'>Dashboard</MenuLink>
-                        </Menu.Item>
-                        <Menu.Item>
-                            <MenuLink to='registers'>Registers</MenuLink>
-                        </Menu.Item>
-                        <Menu.Item>
-                            <MenuLink to='contracts'>Contracts</MenuLink>
-                        </Menu.Item>
-                    </Menu.List>
-                </Menu>
+                <div id='menu'>
+                    <Menu>
+                        <Menu.Heading>Koodilehto</Menu.Heading>
+
+                        <Menu.List>
+                            <Menu.Item>
+                                <MenuLink to='dashboard'>Dashboard</MenuLink>
+                            </Menu.Item>
+                            <Menu.Item>
+                                <MenuLink to='registers'>Registers</MenuLink>
+                            </Menu.Item>
+                            <Menu.Item>
+                                <MenuLink to='contracts'>Contracts</MenuLink>
+                            </Menu.Item>
+                        </Menu.List>
+                    </Menu>
+                </div>
+
+                <div id='main'>
+                    <RouteHandler />
+                </div>
             </div>
-
-            <div id='main'>
-                <RouteHandler />
-            </div>
-        </div>;
+        );
     }
 });
-module.exports = Application;

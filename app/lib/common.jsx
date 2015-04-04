@@ -6,7 +6,13 @@ var Link = ReactRouter.Link;
 
 
 exports.MenuLink = React.createClass({
-    render: function() {
+    displayName: 'MenuLink',
+
+    propTypes: {
+        className: React.PropTypes.string,
+    },
+
+    render() {
         var {className, ...props} = this.props;
 
         return (

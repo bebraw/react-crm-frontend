@@ -24,25 +24,29 @@ module.exports = function(api) {
 
     // TODO: get client schema and convert to column definition
     return React.createClass({
+        displayName: 'Clients',
+
         mixins: [Reflux.connect(clientStore, 'clients')],
 
-        getInitialState: function() {
+        getInitialState() {
             clientActions.load();
 
             return {};
         },
 
-        render: function() {
+        render() {
             var data = this.state.clients || [];
 
-            return <div>
-                <h2>Clients</h2>
+            return (
+                <div>
+                    <h2>Clients</h2>
 
-                <Table
-                    className='pure-table pure-table-striped'
-                    columns={columns}
-                    data={data}></Table>
-            </div>;
+                    <Table
+                        className='pure-table pure-table-striped'
+                        columns={columns}
+                        data={data} />
+                </div>
+            );
         }
     });
 };

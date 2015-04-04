@@ -25,6 +25,8 @@ module.exports = function(api) {
     });
 
     return React.createClass({
+        displayName: 'Users',
+
         getInitialState: function() {
             return {
                 modal: {
@@ -39,25 +41,26 @@ module.exports = function(api) {
                 createNewUser: 'Create a new user',
             };
 
-            var data = this.state.users || [];
+            //var data = this.state.users || [];
             var modal = this.state.modal || {};
 
             // TODO: eliminate onSort
-            return <div>
-                <h2>Users</h2>
+            return (
+                <div>
+                    <h2>Users</h2>
 
-                <div className='controls'>
-                <button onClick={this.createNewUser}>{i18n.createNewUser}</button>
+                    <div className='controls'>
+                    <button onClick={this.createNewUser}>{i18n.createNewUser}</button>
+                    </div>
+
+                    <Table
+                        store={userStore} actions={userActions}
+                        schema={schema} columns={columns}
+                        onSort={this.setState.bind(this)} />
+
+                    <SkyLight ref='modal' title={modal.title}>{modal.content}</SkyLight>
                 </div>
-
-                <Table
-                    store={userStore} actions={userActions}
-                    schema={schema} columns={columns}
-                    onSort={this.setState.bind(this)}>
-                </Table>
-
-                <SkyLight ref='modal' title={modal.title}>{modal.content}</SkyLight>
-            </div>;
+            );
         },
 
         createNewUser: function() {
@@ -74,7 +77,7 @@ module.exports = function(api) {
                         schema={schema}
                         validate={validate}
                         onSubmit={onSubmit}
-                    ></Form>
+                    />
                 }
             });
 

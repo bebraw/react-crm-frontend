@@ -15,12 +15,12 @@ var Contracts = require('./Contracts');
 var Home = require('./Home');
 
 var url = 'http://localhost:3000'; // TODO: move this to configuration
-var api = require('./api');
+var createApi = require('./api');
 
 
 module.exports = function() {
     return new Promise(function(resolve, reject) {
-        api(url).then(function(api) {
+        createApi(url).then(function(api) {
             var Users = require('./Registers/Users')(api);
             var Clients = require('./Registers/Clients')(api);
 

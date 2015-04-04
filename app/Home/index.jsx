@@ -1,13 +1,16 @@
 'use strict';
 
 var React = require('react');
-var Link = require('react-router').Link;
 
 
 module.exports = React.createClass({
-    render: function() {
-        return <div>
-            <p>Login form should go here</p>
-        </div>;
+    displayName: 'Home',
+
+    render() {
+        return (
+            <div>
+                <p>Login form should go here</p>
+            </div>
+        );
     }
 });

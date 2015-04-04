@@ -5,7 +5,7 @@ var SkyLight = require('jsx!react-skylight/src/skylight.jsx');
 
 var reactabular = require('reactabular');
 var Table = reactabular.Table;
-var sortColumns = reactabular.sortColumns;
+//var sortColumns = reactabular.sortColumns;
 
 var Form = require('plexus-form');
 var validate = require('plexus-validate');
@@ -13,7 +13,17 @@ var Paginator = require('react-pagify');
 
 
 module.exports = React.createClass({
+    displayName: 'Table',
+
     mixins: [Reflux.ListenerMixin],
+
+    propTypes: {
+        actions: React.PropTypes.object,
+        store: React.PropTypes.object,
+        columns: React.PropTypes.array,
+        schema: React.PropTypes.object,
+        onSort: React.PropTypes.func,
+    },
 
     getInitialState() {
         var perPage = 10;
@@ -48,14 +58,14 @@ module.exports = React.createClass({
     },
 
     render() {
-        var schema = this.props.schema || {};
+        //var schema = this.props.schema || {};
         var columns = this.props.columns || [];
         var header = {
             onClick: (column) => {
                 reactabular.sortColumn(
                     columns,
                     column,
-                    data,
+                    //data,
                     this.props.onSort
                 );
             },
@@ -68,20 +78,22 @@ module.exports = React.createClass({
             cell: this.editCell,
         });
 
-        return <div>
-            <Table
-                className='pure-table pure-table-striped'
-                columns={columns}
-                data={store.data}
-                header={header} />
-            <Paginator
-                page={pagination.page}
-                pages={Math.ceil(store.count / pagination.perPage)}
-                beginPages='3'
-                endPages='3'
-                onSelect={this.onSelectPage} />
-            <SkyLight ref='modal' title={modal.title}>{modal.content}</SkyLight>
-        </div>
+        return (
+            <div>
+                <Table
+                    className='pure-table pure-table-striped'
+                    columns={columns}
+                    data={store.data}
+                    header={header} />
+                <Paginator
+                    page={pagination.page}
+                    pages={Math.ceil(store.count / pagination.perPage)}
+                    beginPages='3'
+                    endPages='3'
+                    onSelect={this.onSelectPage} />
+                <SkyLight ref='modal' title={modal.title}>{modal.content}</SkyLight>
+            </div>
+        );
     },
 
     onSelectPage(page) {
@@ -96,7 +108,7 @@ module.exports = React.createClass({
         });
     },
 
-    editCell(property, value, rowIndex, columnIndex) {
+    editCell(property, value, rowIndex) {
         var edit = () => {
             this.refs.modal.show();
 
@@ -125,7 +137,7 @@ module.exports = React.createClass({
                         validate={validate}
                         values={data[rowIndex]}
                         onSubmit={onSubmit}
-                    ></Form>
+                    />
                 }
             });
 
@@ -141,5 +153,3 @@ module.exports = React.createClass({
         };
     },
 });
-
-function noop() {}
