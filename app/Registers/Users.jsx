@@ -10,8 +10,8 @@ var generateTitles = require('lib/generate_titles');
 
 
 module.exports = function(api) {
-    var userActions = require('./actions')(api);
-    var userStore = require('./store')(userActions);
+    var userActions = require('./actions/UserActions')(api);
+    var userStore = require('./stores/UserStore')(userActions);
 
     var schema = api.users.get.responses['200'].schema;
     schema.type = 'object';
