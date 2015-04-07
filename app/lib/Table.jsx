@@ -3,6 +3,7 @@ var _ = require('lodash'); // XXX: expand to exact import
 var React = require('react');
 var Reflux = require('reflux');
 var SkyLight = require('jsx!react-skylight/src/skylight.jsx');
+var titleCase = require('title-case');
 
 var reactabular = require('reactabular');
 var Table = reactabular.Table;
@@ -20,7 +21,6 @@ module.exports = React.createClass({
     propTypes: {
         actions: React.PropTypes.object,
         store: React.PropTypes.object,
-        columns: React.PropTypes.array,
         schema: React.PropTypes.object,
         onSort: React.PropTypes.func,
     },
@@ -28,11 +28,24 @@ module.exports = React.createClass({
     getInitialState() {
         var perPage = 10;
         var actions = this.props.actions;
+        var store = this.props.store;
+        var schema = this.props.schema || {};
 
-        this.listenTo(this.props.store, this.onData);
+        if(store) {
+            this.listenTo(this.props.store, this.onData);
+        }
 
-        actions.load({
-            perPage: perPage,
+        if(actions) {
+            actions.load({
+                perPage: perPage,
+            });
+        }
+
+        var columns = Object.keys(schema.properties).map(function(name) {
+            return {
+                property: name,
+                header: titleCase(name),
+            };
         });
 
         return {
@@ -49,6 +62,7 @@ module.exports = React.createClass({
                 perPage: perPage,
             },
             sortBy: null,
+            columns: columns,
         };
     },
 
@@ -59,9 +73,10 @@ module.exports = React.createClass({
     },
 
     render() {
-        var columns = this.props.columns || [];
+        var columns = this.state.columns || [];
         var header = {
             onClick: (column) => {
+                var actions = this.props.actions;
                 var property = column.property;
                 var pagination = this.state.pagination;
                 var sortBy = this.state.sortBy;
@@ -73,9 +88,11 @@ module.exports = React.createClass({
                     sortBy = property;
                 }
 
-                this.props.actions.sort(_.merge({
-                    sortBy: sortBy,
-                }, pagination));
+                if(actions) {
+                    this.props.actions.sort(_.merge({
+                        sortBy: sortBy,
+                    }, pagination));
+                }
 
                 this.setState({
                     sortBy: sortBy,

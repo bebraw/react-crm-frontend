@@ -1,10 +1,9 @@
 'use strict';
 var React = require('react');
 var Reflux = require('reflux');
-var Table = require('reactabular').Table;
-var titleCase = require('title-case');
 
 var generateTitles = require('lib/generate_titles');
+var Table = require('lib/Table.jsx');
 
 
 module.exports = function(api) {
@@ -14,13 +13,6 @@ module.exports = function(api) {
     var schema = api.clients.get.responses['200'].schema;
     schema.type = 'object';
     schema.properties = generateTitles(schema.properties);
-
-    var columns = Object.keys(schema.properties).map(function(name) {
-        return {
-            property: name,
-            header: titleCase(name),
-        };
-    });
 
     // TODO: get client schema and convert to column definition
     return React.createClass({
@@ -35,16 +27,13 @@ module.exports = function(api) {
         },
 
         render() {
-            var data = this.state.clients || [];
-
             return (
                 <div>
                     <h2>Clients</h2>
 
                     <Table
-                        className='pure-table pure-table-striped'
-                        columns={columns}
-                        data={data} />
+                        store={clientStore} actions={clientActions}
+                        schema={schema} />
                 </div>
             );
         }
