@@ -1,9 +1,7 @@
 'use strict';
 var React = require('react');
-var SkyLight = require('jsx!react-skylight/src/skylight.jsx');
-var Button = require('react-pure-button');
 
-var Form = require('lib/Form.jsx');
+var Create = require('lib/Create.jsx');
 var Table = require('lib/Table.jsx');
 var generateTitles = require('lib/generate_titles');
 
@@ -19,75 +17,32 @@ module.exports = function(api) {
     return React.createClass({
         displayName: 'Users',
 
-        getInitialState: function() {
-            return {
-                modal: {
-                    title: null,
-                    content: null,
-                },
-            };
-        },
-
         render: function() {
             var i18n = {
-                createNewUser: 'Create a new user',
+                user: {
+                    createNew: 'Create a new user'
+                },
             };
-
-            var modal = this.state.modal || {};
 
             return (
-                <div>
-                    <div className='pure-g'>
-                        <div className='pure-u-1'>
-                            <h2>Users</h2>
-                        </div>
-
-                        <div className='pure-u-1 controls'>
-                            <Button onClick={this.createNewUser}>{i18n.createNewUser}</Button>
-                        </div>
-
-                        <div className='pure-u-1'>
-                            <Table
-                                store={userStore} actions={userActions}
-                                schema={schema} />
-                        </div>
+                <div className='pure-g'>
+                    <div className='pure-u-1'>
+                        <h2>Users</h2>
                     </div>
-                    <SkyLight ref='modal' title={modal.title}>{modal.content}</SkyLight>
+
+                    <div className='pure-u-1 controls'>
+                        <Create schema={schema} actions={userActions}>
+                            {i18n.user.createNew}
+                        </Create>
+                    </div>
+
+                    <div className='pure-u-1'>
+                        <Table
+                            store={userStore} actions={userActions}
+                            schema={schema} />
+                    </div>
                 </div>
             );
-        },
-
-        createNewUser: function() {
-            var that = this;
-            var i18n = {
-                createNewUser: 'Create a new user',
-            };
-
-            this.setState({
-                modal: {
-                    title: i18n.createNewUser,
-                    content: <Form
-                        schema={schema}
-                        onSubmit={onSubmit}
-                    />
-                }
-            });
-
-            this.refs.modal.show();
-
-            function onSubmit(data, value, errors) {
-                if(value === 'Cancel') {
-                    return that.refs.modal.hide();
-                }
-
-                if(!Object.keys(errors).length) {
-                    that.refs.modal.hide();
-
-                    delete data.id;
-
-                    userActions.create(data);
-                }
-            }
         },
     });
 };
