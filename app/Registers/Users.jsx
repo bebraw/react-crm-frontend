@@ -1,6 +1,5 @@
 'use strict';
 var React = require('react');
-var titleCase = require('title-case');
 var SkyLight = require('jsx!react-skylight/src/skylight.jsx');
 var Button = require('react-pure-button');
 
@@ -16,13 +15,6 @@ module.exports = function(api) {
     var schema = api.users.get.responses['200'].schema;
     schema.type = 'object';
     schema.properties = generateTitles(schema.properties);
-
-    var columns = Object.keys(schema.properties).map(function(name) {
-        return {
-            property: name,
-            header: titleCase(name),
-        };
-    });
 
     return React.createClass({
         displayName: 'Users',
@@ -57,7 +49,7 @@ module.exports = function(api) {
                         <div className='pure-u-1'>
                             <Table
                                 store={userStore} actions={userActions}
-                                schema={schema} columns={columns} />
+                                schema={schema} />
                         </div>
                     </div>
                     <SkyLight ref='modal' title={modal.title}>{modal.content}</SkyLight>
