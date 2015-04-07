@@ -2,7 +2,7 @@
 var Reflux = require('reflux');
 
 
-module.exports = function(api) {
+module.exports = function(api, resource) {
     var asyncChildren = {
         children: ['completed', 'failed'],
     };
@@ -14,7 +14,7 @@ module.exports = function(api) {
     });
 
     Actions.load.listen(function(o) {
-        api.users.get(o).then((res) => {
+        api[resource].get(o).then((res) => {
             this.completed({
                 count: res.headers['total-count'],
                 data: res.data
@@ -23,7 +23,7 @@ module.exports = function(api) {
     });
 
     Actions.create.listen(function(data) {
-        api.users.post(data).then((res) => {
+        api[resource].post(data).then((res) => {
             data.id = res.data.id;
 
             this.completed(data);
@@ -31,11 +31,11 @@ module.exports = function(api) {
     });
 
     Actions.update.listen(function(data) {
-        api.users.put(data).then(() => this.completed(data)).catch(this.failed);
+        api[resource].put(data).then(() => this.completed(data)).catch(this.failed);
     });
 
     Actions.sort.listen(function(o) {
-        api.users.get(o).then((res) => {
+        api[resource].get(o).then((res) => {
             this.completed({
                 count: res.headers['total-count'],
                 data: res.data

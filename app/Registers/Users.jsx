@@ -7,8 +7,8 @@ var getSchema = require('lib/get_schema');
 
 
 module.exports = function(api) {
-    var userActions = require('./actions/UserActions')(api);
-    var userStore = require('./stores/UserStore')(userActions);
+    var actions = require('./actions/Actions')(api, 'users');
+    var userStore = require('./stores/UserStore')(actions);
     var schema = getSchema(api.users);
 
     return React.createClass({
@@ -28,14 +28,14 @@ module.exports = function(api) {
                     </div>
 
                     <div className='pure-u-1 controls'>
-                        <Create schema={schema} actions={userActions}>
+                        <Create schema={schema} actions={actions}>
                             {i18n.user.createNew}
                         </Create>
                     </div>
 
                     <div className='pure-u-1'>
                         <Table
-                            store={userStore} actions={userActions}
+                            store={userStore} actions={actions}
                             schema={schema} />
                     </div>
                 </div>
