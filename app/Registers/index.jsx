@@ -24,6 +24,9 @@ module.exports = React.createClass({
                                 <MenuLink to='clients'>Clients</MenuLink>
                             </Menu.Item>
                             <Menu.Item>
+                                <MenuLink to='projects'>Projects</MenuLink>
+                            </Menu.Item>
+                            <Menu.Item>
                                 <MenuLink to='products'>Products</MenuLink>
                             </Menu.Item>
                             <Menu.Item>

@@ -30,6 +30,7 @@ module.exports = function() {
                     <Route name='registers' path='/registers' handler={Registers}>
                         <Route name='users' path='/registers/users' handler={Users} />
                         <Route name='clients' path='/registers/clients' handler={crud('client')} />
+                        <Route name='projects' path='/registers/projects' handler={crud('project')} />
                         <Route name='products' path='/registers/products' handler={Products} />
                         <Route name='invoices' path='/registers/invoices' handler={Invoices} />
 
