@@ -2,17 +2,14 @@
 var React = require('react');
 var Reflux = require('reflux');
 
-var generateTitles = require('lib/generate_titles');
 var Table = require('lib/Table.jsx');
+var getSchema = require('lib/get_schema');
 
 
 module.exports = function(api) {
     var clientActions = require('./actions/ClientActions')(api);
     var clientStore = require('./stores/ClientStore')(clientActions);
-
-    var schema = api.clients.get.responses['200'].schema;
-    schema.type = 'object';
-    schema.properties = generateTitles(schema.properties);
+    var schema = getSchema(api.clients);
 
     // TODO: get client schema and convert to column definition
     return React.createClass({

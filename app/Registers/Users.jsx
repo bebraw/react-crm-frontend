@@ -3,16 +3,13 @@ var React = require('react');
 
 var Create = require('lib/Create.jsx');
 var Table = require('lib/Table.jsx');
-var generateTitles = require('lib/generate_titles');
+var getSchema = require('lib/get_schema');
 
 
 module.exports = function(api) {
     var userActions = require('./actions/UserActions')(api);
     var userStore = require('./stores/UserStore')(userActions);
-
-    var schema = api.users.get.responses['200'].schema;
-    schema.type = 'object';
-    schema.properties = generateTitles(schema.properties);
+    var schema = getSchema(api.users);
 
     return React.createClass({
         displayName: 'Users',
