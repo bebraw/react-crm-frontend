@@ -12,3 +12,7 @@ body {
 .pure-menu-item {
     height: inherit;
 }
+
+.form-element.error {
+    background: rgb(250, 204, 202);
+}
