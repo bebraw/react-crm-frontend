@@ -8,7 +8,7 @@ var getSchema = require('lib/get_schema');
 
 module.exports = function(api) {
     var actions = require('./actions/Actions')(api, 'clients');
-    var clientStore = require('./stores/ClientStore')(actions);
+    var store = require('./stores/Store')(actions);
     var schema = getSchema(api.clients);
 
     return React.createClass({
@@ -35,7 +35,7 @@ module.exports = function(api) {
 
                     <div className='pure-u-1'>
                         <Table
-                            store={clientStore} actions={actions}
+                            store={store} actions={actions}
                             schema={schema} />
                     </div>
                 </div>
