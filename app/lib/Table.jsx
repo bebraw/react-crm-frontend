@@ -107,13 +107,18 @@ module.exports = React.createClass({
             cell: this.editCell,
         });
 
+        // TODO: i18n "No data"
         return (
             <div>
-                <Table
-                    className='pure-table pure-table-striped'
-                    columns={columns}
-                    data={store.data}
-                    header={header} />
+                {
+                    store.data && store.data.length
+                    ?<Table
+                        className='pure-table pure-table-striped'
+                        columns={columns}
+                        data={store.data}
+                        header={header} />
+                    :<span>No data</span>
+                }
                 <Paginator
                     page={pagination.page}
                     pages={Math.ceil(store.count / pagination.perPage)}
