@@ -1,11 +1,11 @@
 'use strict';
+var _ = require('lodash'); // XXX: expand to exact import
 var React = require('react');
 var Reflux = require('reflux');
 var SkyLight = require('jsx!react-skylight/src/skylight.jsx');
 
 var reactabular = require('reactabular');
 var Table = reactabular.Table;
-//var sortColumns = reactabular.sortColumns;
 
 var Paginator = require('react-pagify');
 
@@ -48,6 +48,7 @@ module.exports = React.createClass({
                 page: 0,
                 perPage: perPage,
             },
+            sortBy: null,
         };
     },
 
@@ -61,7 +62,24 @@ module.exports = React.createClass({
         var columns = this.props.columns || [];
         var header = {
             onClick: (column) => {
-                this.props.actions.sortBy(column.property);
+                var property = column.property;
+                var pagination = this.state.pagination;
+                var sortBy = this.state.sortBy;
+
+                if(sortBy === property) {
+                    sortBy = '-' + property;
+                }
+                else {
+                    sortBy = property;
+                }
+
+                this.props.actions.sort(_.merge({
+                    sortBy: sortBy,
+                }, pagination));
+
+                this.setState({
+                    sortBy: sortBy,
+                });
             },
         };
         var store = this.state.store;
@@ -93,9 +111,11 @@ module.exports = React.createClass({
     onSelectPage(page) {
         var pagination = this.state.pagination;
 
-        this.props.actions.load(pagination);
-
         pagination.page = page;
+
+        this.props.actions.load(_.merge({
+            sortBy: this.state.sortBy,
+        }, pagination));
 
         this.setState({
             pagination: pagination,

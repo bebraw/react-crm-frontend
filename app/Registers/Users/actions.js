@@ -10,7 +10,7 @@ module.exports = function(api) {
         load: asyncChildren,
         create: asyncChildren,
         update: asyncChildren,
-        sortBy: asyncChildren,
+        sort: asyncChildren,
     });
 
     Actions.load.listen(function(o) {
@@ -34,8 +34,13 @@ module.exports = function(api) {
         api.users.put(data).then(() => this.completed(data)).catch(this.failed);
     });
 
-    Actions.sortBy.listen((data) => {
-        console.log('sort by', data);
+    Actions.sort.listen(function(o) {
+        api.users.get(o).then((res) => {
+            this.completed({
+                count: res.headers['total-count'],
+                data: res.data
+            });
+        }).catch(this.failed);
     });
 
     return Actions;

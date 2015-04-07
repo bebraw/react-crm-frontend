@@ -17,6 +17,9 @@ module.exports = function(actions) {
 
             this.listenTo(actions.update.completed, this.updateCompleted);
             this.listenTo(actions.update.failed, this.failed);
+
+            this.listenTo(actions.sort.completed, this.loadCompleted);
+            this.listenTo(actions.sort.failed, this.failed);
         },
 
         loadCompleted: function(o) {
