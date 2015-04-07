@@ -9,7 +9,6 @@ var DefaultRoute = Router.DefaultRoute;
 var Application = require('./Application');
 var Dashboard = require('./Dashboard');
 var Registers = require('./Registers');
-var Products = require('./Registers/Products');
 var Invoices = require('./Registers/Invoices');
 var Contracts = require('./Contracts');
 var Home = require('./Home');
@@ -31,7 +30,7 @@ module.exports = function() {
                         <Route name='users' path='/registers/users' handler={Users} />
                         <Route name='clients' path='/registers/clients' handler={crud('client')} />
                         <Route name='projects' path='/registers/projects' handler={crud('project')} />
-                        <Route name='products' path='/registers/products' handler={Products} />
+                        <Route name='products' path='/registers/products' handler={crud('product')} />
                         <Route name='invoices' path='/registers/invoices' handler={Invoices} />
 
                         <DefaultRoute handler={Users}/>
