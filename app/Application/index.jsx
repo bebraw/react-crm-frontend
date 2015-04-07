@@ -1,4 +1,5 @@
 'use strict';
+var classNames = require('classnames');
 var React = require('react');
 var ReactRouter = require('react-router');
 var RouteHandler = ReactRouter.RouteHandler;
@@ -17,12 +18,22 @@ require('./style.css');
 module.exports = React.createClass({
     displayName: 'Application',
 
-    render() {
-        return (
-            <div id='layout'>
-                <a href='#menu' id='menuLink' className='menu-link'><span /></a>
+    getInitialState() {
+        return {
+            menuActive: false,
+        };
+    },
 
-                <div id='menu'>
+    render() {
+        var menuActive = this.state.menuActive;
+
+        return (
+            <div id='layout' className={classNames({active: menuActive})}>
+                <a href='#menu' id='menuLink'
+                    className={classNames({active: menuActive, 'menu-link': true})}
+                    onClick={this.menuLinkClicked}><span /></a>
+
+                <div id='menu' className={classNames({active: menuActive})}>
                     <Menu>
                         <Menu.Heading>Koodilehto</Menu.Heading>
 
@@ -45,5 +56,13 @@ module.exports = React.createClass({
                 </div>
             </div>
         );
+    },
+
+    menuLinkClicked(e) {
+        e.preventDefault();
+
+        this.setState({
+            menuActive: !this.state.menuActive,
+        });
     }
 });
