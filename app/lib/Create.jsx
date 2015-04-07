@@ -62,6 +62,9 @@ module.exports = React.createClass({
 
                 that.props.actions.create(data);
             }
+            else {
+                console.info('errors', errors);
+            }
         }
     },
 });
