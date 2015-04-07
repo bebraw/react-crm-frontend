@@ -21,15 +21,15 @@ var createApi = require('./api');
 module.exports = function() {
     return new Promise(function(resolve, reject) {
         createApi(url).then(function(api) {
-            var Users = require('./Registers/Users')(api);
-            var Clients = require('./Registers/Clients')(api);
+            var crud = require('./lib/Crud')(api);
+            var Users = crud('user');
 
             resolve(
                 <Route name='app' path='/' handler={Application}>
                     <Route name='dashboard' path='/dashboard' handler={Dashboard} />
                     <Route name='registers' path='/registers' handler={Registers}>
                         <Route name='users' path='/registers/users' handler={Users} />
-                        <Route name='clients' path='/registers/clients' handler={Clients} />
+                        <Route name='clients' path='/registers/clients' handler={crud('client')} />
                         <Route name='products' path='/registers/products' handler={Products} />
                         <Route name='invoices' path='/registers/invoices' handler={Invoices} />
 

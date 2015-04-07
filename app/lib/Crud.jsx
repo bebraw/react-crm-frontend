@@ -7,8 +7,8 @@ var Table = require('./Table.jsx');
 var getSchema = require('./get_schema');
 
 
-module.exports = function(name) {
-    return function(api) {
+module.exports = function(api) {
+    return function(name) {
         var multipleName = name + 's';
         var upperMultipleName = titleCase(multipleName);
         var actions = require('./Actions')(api, multipleName);
