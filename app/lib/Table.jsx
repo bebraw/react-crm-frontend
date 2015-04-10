@@ -122,8 +122,8 @@ module.exports = React.createClass({
                 <Paginator
                     page={pagination.page}
                     pages={Math.ceil(store.count / pagination.perPage)}
-                    beginPages='3'
-                    endPages='3'
+                    beginPages={3}
+                    endPages={3}
                     onSelect={this.onSelectPage} />
                 <SkyLight ref='modal' title={modal.title}>{modal.content}</SkyLight>
             </div>
