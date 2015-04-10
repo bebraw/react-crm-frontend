@@ -16,3 +16,8 @@ body {
 .form-element.error {
     background: rgb(250, 204, 202);
 }
+
+#menu .pure-menu-list.submenu {
+    background: white;
+    border: 1px solid #333;
+}

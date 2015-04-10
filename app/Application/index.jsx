@@ -18,6 +18,10 @@ require('./style.css');
 module.exports = React.createClass({
     displayName: 'Application',
 
+    contextTypes: {
+      router: React.PropTypes.func
+    },
+
     getInitialState() {
         return {
             menuActive: false,
@@ -25,7 +29,9 @@ module.exports = React.createClass({
     },
 
     render() {
-        var menuActive = this.state.menuActive;
+        const menuActive = this.state.menuActive;
+        const pathName = this.context.router.getCurrentPathname();
+        const inRegisters = pathName.startsWith('/registers');
 
         return (
             <div id='layout' className={classNames({active: menuActive})}>
@@ -43,6 +49,27 @@ module.exports = React.createClass({
                             </Menu.Item>
                             <Menu.Item>
                                 <MenuLink to='registers'>Registers</MenuLink>
+
+                                {inRegisters?
+                                <Menu.List className='submenu'>
+                                    <Menu.Item>
+                                        <MenuLink to='users'>Users</MenuLink>
+                                    </Menu.Item>
+                                    <Menu.Item>
+                                        <MenuLink to='clients'>Clients</MenuLink>
+                                    </Menu.Item>
+                                    <Menu.Item>
+                                        <MenuLink to='projects'>Projects</MenuLink>
+                                    </Menu.Item>
+                                    <Menu.Item>
+                                        <MenuLink to='products'>Products</MenuLink>
+                                    </Menu.Item>
+                                    <Menu.Item>
+                                        <MenuLink to='invoices'>Invoices</MenuLink>
+                                    </Menu.Item>
+                                </Menu.List>
+                                : null}
+
                             </Menu.Item>
                             <Menu.Item>
                                 <MenuLink to='contracts'>Contracts</MenuLink>
