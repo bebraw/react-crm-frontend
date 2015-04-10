@@ -18,31 +18,34 @@
   "dependencies": {
     "annozip": "^0.2.6",
     "axios": "^0.5.4",
-    "body-parser": "^1.12.2",
     "classnames": "^1.2.0",
-    "css-loader": "^0.10.1",
     "es6-promise": "^2.0.1",
-    "express": "^4.12.3",
-    "html-loader": "^0.2.3",
-    "json-loader": "^0.5.1",
-    "jsx-loader": "^0.13.1",
     "lodash": "^3.6.0",
     "plexus-form": "^0.1.2",
     "plexus-validate": "^0.0.4",
     "purecss": "^0.6.0",
     "react": "^0.13.1",
-    "react-hot-loader": "^1.2.4",
     "react-pagify": "^0.5.0",
-    "react-proxy-loader": "^0.3.4",
     "react-pure-button": "^0.1.0",
     "react-pure-menu": "^0.2.1",
     "react-router": "^0.13.2",
     "react-skylight": "^0.2.0",
     "reactabular": "^0.5.2",
     "reflux": "^0.2.7",
-    "style-loader": "^0.10.1",
     "swagger2client": "^0.1.4",
-    "title-case": "^1.1.0",
+    "title-case": "^1.1.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^2.0.2",
+    "eslint": "^0.18.0",
+    "eslint-plugin-react": "^2.1.0",
+    "css-loader": "^0.10.1",
+    "express": "^4.12.3",
+    "html-loader": "^0.2.3",
+    "json-loader": "^0.5.1",
+    "jsx-loader": "^0.13.1",
+    "react-hot-loader": "^1.2.4",
+    "style-loader": "^0.10.1",
     "webpack": "^1.8.3",
     "webpack-dev-server": "^1.8.0",
     "xtend": "^4.0.0"
@@ -60,10 +63,5 @@
       "type": "MIT",
       "url": "https://github.com/koodilehto/koodilehto-crm-frontend/blob/master/LICENSE"
     }
-  ],
-  "devDependencies": {
-    "babel-eslint": "^2.0.2",
-    "eslint": "^0.18.0",
-    "eslint-plugin-react": "^2.1.0"
-  }
+  ]
 }
