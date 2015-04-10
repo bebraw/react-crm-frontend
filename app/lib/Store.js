@@ -1,6 +1,6 @@
 'use strict';
 var Reflux = require('reflux');
-var findIndex = require('lodash.findindex');
+var findIndex = require('lodash').findIndex;
 
 
 module.exports = function(actions) {
