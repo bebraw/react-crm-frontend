@@ -168,6 +168,11 @@ module.exports = React.createClass({
 
             var schema = this.props.schema || {};
             var data = this.props.store.data;
+
+            schema.properties = _.filter(schema.properties, function(o) {
+                return !o.readOnly;
+            });
+
             this.setState({
                 modal: {
                     title: 'Edit',

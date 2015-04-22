@@ -20,7 +20,7 @@
     "axios": "^0.5.4",
     "classnames": "^1.2.0",
     "es6-promise": "^2.0.1",
-    "lodash": "^3.6.0",
+    "lodash": "^3.7.0",
     "plexus-form": "^0.1.2",
     "plexus-validate": "^0.0.4",
     "purecss": "^0.6.0",

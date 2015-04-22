@@ -1,4 +1,5 @@
 'use strict';
+var _ = require('lodash');
 var React = require('react');
 var SkyLight = require('jsx!react-skylight/src/skylight.jsx');
 var Button = require('react-pure-button');
@@ -37,12 +38,18 @@ module.exports = React.createClass({
 
     createNew: function() {
         var that = this;
+        var title = this.props.children;
+        var schema = this.props.schema;
+
+        schema.properties = _.filter(schema.properties, function(o) {
+            return !o.readOnly;
+        });
 
         this.setState({
             modal: {
-                title: that.props.children,
+                title: title,
                 content: <Form
-                    schema={that.props.schema}
+                    schema={schema}
                     onSubmit={onSubmit}
                 />
             }
