@@ -103,6 +103,10 @@ module.exports = React.createClass({
         var modal = this.state.modal;
         var pagination = this.state.pagination;
 
+        var dialogStyles = {
+            overflow: 'auto'
+        };
+
         columns = columns.concat({
             cell: this.editCell,
         });
@@ -125,7 +129,7 @@ module.exports = React.createClass({
                     beginPages={3}
                     endPages={3}
                     onSelect={this.onSelectPage} />
-                <SkyLight ref='modal' title={modal.title}>{modal.content}</SkyLight>
+                <SkyLight ref='modal' dialogStyles={dialogStyles} title={modal.title}>{modal.content}</SkyLight>
             </div>
         );
     },
