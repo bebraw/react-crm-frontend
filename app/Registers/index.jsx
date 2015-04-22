@@ -7,6 +7,7 @@ var DefaultRoute = Router.DefaultRoute;
 var createCrud = require('../lib/Crud');
 var Invoices = require('./Invoices');
 var Layout = require('./Layout');
+var products = require('./Products');
 
 
 module.exports = function(api) {
@@ -18,7 +19,7 @@ module.exports = function(api) {
             <Route name='users' path='/registers/users' handler={Users} />
             <Route name='clients' path='/registers/clients' handler={crud('client')} />
             <Route name='projects' path='/registers/projects' handler={crud('project')} />
-            <Route name='products' path='/registers/products' handler={crud('product')} />
+            <Route name='products' path='/registers/products' handler={products(api)} />
             <Route name='invoices' path='/registers/invoices' handler={Invoices} />
 
             <DefaultRoute handler={Users}/>

@@ -8,12 +8,14 @@ var getSchema = require('./get_schema');
 
 
 module.exports = function(api) {
-    return function(name) {
+    return function(resourceName, name) {
+        name = name || resourceName;
+
         var multipleName = name + 's';
         var upperMultipleName = titleCase(multipleName);
-        var actions = require('./Actions')(api, multipleName);
+        var actions = require('./Actions')(api, resourceName + 's');
         var store = require('./Store')(actions);
-        var schema = getSchema(api[multipleName]);
+        var schema = getSchema(api[resourceName + 's']);
         var createNew = 'Create a new ' + name;
 
         return React.createClass({
