@@ -113,16 +113,13 @@ module.exports = React.createClass({
 
         // TODO: i18n "No data"
         return (
+            store.data && store.data.length?
             <div>
-                {
-                    store.data && store.data.length
-                    ?<Table
-                        className='pure-table pure-table-striped'
-                        columns={columns}
-                        data={store.data}
-                        header={header} />
-                    :<span>No data</span>
-                }
+                <Table
+                    className='pure-table pure-table-striped'
+                    columns={columns}
+                    data={store.data}
+                    header={header} />
                 <Paginator
                     page={pagination.page}
                     pages={Math.ceil(store.count / pagination.perPage)}
@@ -131,6 +128,7 @@ module.exports = React.createClass({
                     onSelect={this.onSelectPage} />
                 <SkyLight ref='modal' dialogStyles={dialogStyles} title={modal.title}>{modal.content}</SkyLight>
             </div>
+            : <span>No data</span>
         );
     },
 
