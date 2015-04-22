@@ -1,23 +1,27 @@
 'use strict';
 var React = require('react');
-var ReactRouter = require('react-router');
-var RouteHandler = ReactRouter.RouteHandler;
+var Router = require('react-router');
+var Route = Router.Route;
+var DefaultRoute = Router.DefaultRoute;
+
+var createCrud = require('../lib/Crud');
+var Invoices = require('./Invoices');
+var Layout = require('./Layout');
 
 
-module.exports = React.createClass({
-    displayName: 'Registers',
+module.exports = function(api) {
+    var crud = createCrud(api);
+    var Users = crud('user');
 
-    render() {
-        return (
-            <div>
-                <div className='header'>
-                    <h1>Registers</h1>
-                </div>
+    return (
+        <Route name='registers' path='/registers' handler={Layout}>
+            <Route name='users' path='/registers/users' handler={Users} />
+            <Route name='clients' path='/registers/clients' handler={crud('client')} />
+            <Route name='projects' path='/registers/projects' handler={crud('project')} />
+            <Route name='products' path='/registers/products' handler={crud('product')} />
+            <Route name='invoices' path='/registers/invoices' handler={Invoices} />
 
-                <div className='content'>
-                    <RouteHandler />
-                </div>
-            </div>
-        );
-    }
-});
+            <DefaultRoute handler={Users}/>
+        </Route>
+    );
+};
