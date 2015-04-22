@@ -1,23 +1,13 @@
 'use strict';
 var React = require('react');
+var Router = require('react-router');
+var Route = Router.Route;
+
+var Layout = require('./Layout');
 
 
-module.exports = React.createClass({
-    displayName: 'Contracts',
-
-    render() {
-        return (
-            <div>
-                <div className='header'>
-                    <h1>Contracts</h1>
-                    <h2>This should show contracts</h2>
-                </div>
-
-                <div className='content'>
-                    TODO
-                </div>
-            </div>
-        );
-
-    }
-});
+module.exports = function() {
+    return (
+        <Route name='contracts' path='/contracts' handler={Layout} />
+    );
+};

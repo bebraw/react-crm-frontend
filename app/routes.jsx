@@ -8,8 +8,8 @@ var DefaultRoute = Router.DefaultRoute;
 
 var Application = require('./Application');
 var Dashboard = require('./Dashboard');
-var Contracts = require('./Contracts');
 var Home = require('./Home');
+var contracts = require('./Contracts');
 var registers = require('./Registers');
 
 var url = 'http://localhost:3000'; // TODO: move this to configuration
@@ -22,8 +22,8 @@ module.exports = function() {
             resolve(
                 <Route name='app' path='/' handler={Application}>
                     <Route name='dashboard' path='/dashboard' handler={Dashboard} />
+                    {contracts(api)}
                     {registers(api)}
-                    <Route name='contracts' path='/contracts' handler={Contracts} />
 
                     <DefaultRoute name='home' handler={Home} />
                 </Route>
