@@ -7,9 +7,10 @@ var Route = Router.Route;
 var DefaultRoute = Router.DefaultRoute;
 
 var Application = require('./Application');
-var Dashboard = require('./Dashboard');
 var Home = require('./Home');
+
 var contracts = require('./Contracts');
+var dashboard = require('./Dashboard');
 var registers = require('./Registers');
 
 var url = 'http://localhost:3000'; // TODO: move this to configuration
@@ -21,8 +22,8 @@ module.exports = function() {
         createApi(url).then(function(api) {
             resolve(
                 <Route name='app' path='/' handler={Application}>
-                    <Route name='dashboard' path='/dashboard' handler={Dashboard} />
                     {contracts(api)}
+                    {dashboard(api)}
                     {registers(api)}
 
                     <DefaultRoute name='home' handler={Home} />

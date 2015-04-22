@@ -1,22 +1,13 @@
 'use strict';
 var React = require('react');
+var Router = require('react-router');
+var Route = Router.Route;
+
+var Layout = require('./Layout');
 
 
-module.exports = React.createClass({
-    displayName: 'Dashboard',
-
-    render() {
-        return (
-            <div>
-                <div className='header'>
-                    <h1>Dashboard</h1>
-                    <h2>Dashboard should go here</h2>
-                </div>
-
-                <div className='content'>
-                    TODO
-                </div>
-            </div>
-        );
-    }
-});
+module.exports = function() {
+    return (
+        <Route name='dashboard' path='/dashboard' handler={Layout} />
+    );
+};
