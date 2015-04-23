@@ -9,7 +9,7 @@ var SectionWrapper = require('./SectionWrapper.jsx');
 
 
 module.exports = React.createClass({
-    displayName: 'Table',
+    displayName: 'Form',
 
     propTypes: {
         schema: React.PropTypes.object,
