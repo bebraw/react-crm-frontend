@@ -1,10 +1,10 @@
 'use strict';
-var _ = require('lodash');
 var React = require('react');
 var Button = require('react-pure-button');
 
 var Form = require('lib/Form');
 var Modal = require('./Modal');
+var getVisible = require('./get_visible');
 
 
 module.exports = React.createClass({
@@ -41,9 +41,7 @@ module.exports = React.createClass({
         var title = this.props.children;
         var schema = this.props.schema;
 
-        schema.properties = _.filter(schema.properties, function(o) {
-            return !o.readOnly;
-        });
+        schema.properties = getVisible(schema.properties);
 
         this.setState({
             modal: {

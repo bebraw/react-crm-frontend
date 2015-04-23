@@ -11,6 +11,7 @@ var Paginator = require('react-pagify');
 
 var Form = require('lib/Form');
 var Modal = require('./Modal');
+var getVisible = require('./get_visible');
 
 
 module.exports = React.createClass({
@@ -163,9 +164,7 @@ module.exports = React.createClass({
             var schema = this.props.schema || {};
             var data = this.props.store.data;
 
-            schema.properties = _.filter(schema.properties, function(o) {
-                return !o.readOnly;
-            });
+            schema.properties = getVisible(schema.properties);
 
             this.setState({
                 modal: {
