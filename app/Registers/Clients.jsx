@@ -13,7 +13,6 @@ module.exports = function(api) {
         displayName: 'Clients',
 
         render() {
-
             return (
                 <div>
                     <ClientGroups />
