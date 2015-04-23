@@ -20,6 +20,7 @@ module.exports = React.createClass({
     mixins: [Reflux.ListenerMixin],
 
     propTypes: {
+        api: React.PropTypes.object,
         actions: React.PropTypes.object,
         store: React.PropTypes.object,
         schema: React.PropTypes.object,
@@ -163,21 +164,28 @@ module.exports = React.createClass({
 
             var schema = this.props.schema || {};
             var data = this.props.store.data;
+            var api = this.props.api;
 
-            schema.properties = getVisible(schema.properties);
-
-            this.setState({
-                modal: {
-                    title: 'Edit',
-                    content: <Form
-                        schema={schema}
-                        values={data[rowIndex]}
-                        onSubmit={onSubmit}
-                    />
+            getVisible(api, schema.properties, (err, d) => {
+                if(err) {
+                    return console.error(err);
                 }
-            });
 
-            this.refs.modal.show();
+                schema.properties = d;
+
+                this.setState({
+                    modal: {
+                        title: 'Edit',
+                        content: <Form
+                            schema={schema}
+                            values={data[rowIndex]}
+                            onSubmit={onSubmit}
+                        />
+                    }
+                });
+
+                this.refs.modal.show();
+            });
         };
 
         return {

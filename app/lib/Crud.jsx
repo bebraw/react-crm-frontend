@@ -29,7 +29,7 @@ module.exports = function(api) {
                         </div>
 
                         <div className='pure-u-1 controls'>
-                            <Create schema={schema} actions={actions}>
+                            <Create api={api} schema={schema} actions={actions}>
                                 {createNew}
                             </Create>
                         </div>
@@ -37,7 +37,7 @@ module.exports = function(api) {
                         <div className='pure-u-1'>
                             <Table
                                 store={store} actions={actions}
-                                schema={schema} />
+                                schema={schema} api={api} />
                         </div>
                     </div>
                 );

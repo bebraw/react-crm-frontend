@@ -11,6 +11,7 @@ module.exports = React.createClass({
     displayName: 'Create',
 
     propTypes: {
+        api: React.PropTypes.object,
         actions: React.PropTypes.object,
         schema: React.PropTypes.object,
         children: React.PropTypes.any,
@@ -40,20 +41,27 @@ module.exports = React.createClass({
         var that = this;
         var title = this.props.children;
         var schema = this.props.schema;
+        var api = this.props.api;
 
-        schema.properties = getVisible(schema.properties);
-
-        this.setState({
-            modal: {
-                title: title,
-                content: <Form
-                    schema={schema}
-                    onSubmit={onSubmit}
-                />
+        getVisible(api, schema.properties, (err, d) => {
+            if(err) {
+                return console.error(err);
             }
-        });
 
-        this.refs.modal.show();
+            schema.properties = d;
+
+            this.setState({
+                modal: {
+                    title: title,
+                    content: <Form
+                        schema={schema}
+                        onSubmit={onSubmit}
+                    />
+                }
+            });
+
+            this.refs.modal.show();
+        });
 
         function onSubmit(data, value, errors) {
             if(value === 'Cancel') {
