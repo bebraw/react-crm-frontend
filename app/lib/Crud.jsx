@@ -21,7 +21,13 @@ module.exports = function(api) {
         return React.createClass({
             displayName: upperMultipleName,
 
+            propTypes: {
+                columns: React.PropTypes.array,
+            },
+
             render: function() {
+                const columns = this.props.columns;
+
                 return (
                     <div className='pure-g'>
                         <div className='pure-u-1'>
@@ -36,6 +42,7 @@ module.exports = function(api) {
 
                         <div className='pure-u-1'>
                             <Table
+                                columns={columns}
                                 store={store} actions={actions}
                                 schema={schema} api={api} />
                         </div>

@@ -22,16 +22,18 @@ module.exports = React.createClass({
     propTypes: {
         api: React.PropTypes.object,
         actions: React.PropTypes.object,
+        columns: React.PropTypes.array,
         store: React.PropTypes.object,
         schema: React.PropTypes.object,
         onSort: React.PropTypes.func,
     },
 
     getInitialState() {
-        var perPage = 10;
-        var actions = this.props.actions;
-        var store = this.props.store;
-        var schema = this.props.schema || {};
+        const perPage = 10;
+        const actions = this.props.actions;
+        const store = this.props.store;
+        const schema = this.props.schema || {};
+        const visibleColumns = this.props.columns;
 
         if(store) {
             this.listenTo(this.props.store, this.onData);
@@ -49,6 +51,10 @@ module.exports = React.createClass({
                 header: titleCase(name),
             };
         });
+
+        if(visibleColumns) {
+            columns = columns.filter((o) => visibleColumns.indexOf(o.property) >= 0);
+        }
 
         return {
             store: {

@@ -17,7 +17,7 @@ module.exports = function(api) {
             return (
                 <div>
                     <ClientGroups />
-                    <Clients />
+                    <Clients columns={['name', 'phone', 'contact', 'department']} />
                 </div>
             );
         }
