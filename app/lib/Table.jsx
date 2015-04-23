@@ -104,12 +104,14 @@ module.exports = React.createClass({
         var store = this.state.store;
         var modal = this.state.modal;
         var pagination = this.state.pagination;
+        var i18n = {
+            noData: 'No data'
+        };
 
         columns = columns.concat({
             cell: this.editCell,
         });
 
-        // TODO: i18n "No data"
         return (
             store.data && store.data.length?
             <div>
@@ -126,7 +128,7 @@ module.exports = React.createClass({
                     onSelect={this.onSelectPage} />
                 <Modal ref='modal' title={modal.title}>{modal.content}</Modal>
             </div>
-            : <span>No data</span>
+            : <span>{i18n.noData}</span>
         );
     },
 
