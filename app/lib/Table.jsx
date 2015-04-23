@@ -2,7 +2,6 @@
 var _ = require('lodash'); // XXX: expand to exact import
 var React = require('react');
 var Reflux = require('reflux');
-var SkyLight = require('jsx!react-skylight/src/skylight.jsx');
 var titleCase = require('title-case');
 
 var reactabular = require('reactabular');
@@ -11,6 +10,7 @@ var Table = reactabular.Table;
 var Paginator = require('react-pagify');
 
 var Form = require('lib/Form');
+var Modal = require('./Modal');
 
 
 module.exports = React.createClass({
@@ -103,10 +103,6 @@ module.exports = React.createClass({
         var modal = this.state.modal;
         var pagination = this.state.pagination;
 
-        var dialogStyles = {
-            overflow: 'auto'
-        };
-
         columns = columns.concat({
             cell: this.editCell,
         });
@@ -126,7 +122,7 @@ module.exports = React.createClass({
                     beginPages={3}
                     endPages={3}
                     onSelect={this.onSelectPage} />
-                <SkyLight ref='modal' dialogStyles={dialogStyles} title={modal.title}>{modal.content}</SkyLight>
+                <Modal ref='modal' title={modal.title}>{modal.content}</Modal>
             </div>
             : <span>No data</span>
         );

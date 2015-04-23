@@ -1,10 +1,10 @@
 'use strict';
 var _ = require('lodash');
 var React = require('react');
-var SkyLight = require('jsx!react-skylight/src/skylight.jsx');
 var Button = require('react-pure-button');
 
 var Form = require('lib/Form');
+var Modal = require('./Modal');
 
 
 module.exports = React.createClass({
@@ -31,7 +31,7 @@ module.exports = React.createClass({
         return (
             <div>
                 <Button onClick={this.createNew}>{this.props.children}</Button>
-                <SkyLight ref='modal' title={modal.title}>{modal.content}</SkyLight>
+                <Modal ref='modal' title={modal.title}>{modal.content}</Modal>
             </div>
         );
     },
