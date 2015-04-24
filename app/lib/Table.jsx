@@ -110,6 +110,7 @@ module.exports = React.createClass({
         var store = this.state.store;
         var modal = this.state.modal;
         var pagination = this.state.pagination;
+        var pageAmount = Math.ceil(store.count / pagination.perPage);
         var i18n = {
             noData: 'No data'
         };
@@ -126,12 +127,12 @@ module.exports = React.createClass({
                     columns={columns}
                     data={store.data}
                     header={header} />
-                <Paginator
+                {pageAmount > 1? <Paginator
                     page={pagination.page}
-                    pages={Math.ceil(store.count / pagination.perPage)}
+                    pages={pageAmount}
                     beginPages={3}
                     endPages={3}
-                    onSelect={this.onSelectPage} />
+                    onSelect={this.onSelectPage} />: null}
                 <Modal ref='modal' title={modal.title}>{modal.content}</Modal>
             </div>
             : <span>{i18n.noData}</span>
