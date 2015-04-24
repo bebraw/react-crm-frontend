@@ -24,14 +24,14 @@ module.exports = function(api, resource) {
 
     Actions.create.listen(function(data) {
         api[resource].post(data).then((res) => {
-            data.id = res.data.id;
-
-            this.completed(data);
+            this.completed(res.data);
         }).catch(this.failed);
     });
 
     Actions.update.listen(function(data) {
-        api[resource].put(data).then(() => this.completed(data)).catch(this.failed);
+        api[resource].put(data).then((res) => {
+            this.completed(res.data);
+        }).catch(this.failed);
     });
 
     Actions.sort.listen(function(o) {
