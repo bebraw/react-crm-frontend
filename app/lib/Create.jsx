@@ -55,6 +55,7 @@ module.exports = React.createClass({
                     title: title,
                     content: <Form
                         schema={schema}
+                        values={{}}
                         onSubmit={onSubmit}
                     />
                 }
