@@ -70,6 +70,10 @@ module.exports = React.createClass({
                 page: 0,
                 perPage: perPage,
             },
+            search: {
+                q: null,
+                field: null,
+            },
             sortBy: null,
             columns: columns,
         };
@@ -128,7 +132,7 @@ module.exports = React.createClass({
                         Per page <input type='text' defaultValue={pagination.perPage} onChange={this.onPerPage}></input>
                     </div>
                     <div className='table-search-container'>
-                        Search <Search columns={columns} onChange={this.setState.bind(this)} />
+                        Search <Search columns={columns} onChange={this.onSearch} />
                     </div>
                 </div>
                 <Table
@@ -160,10 +164,17 @@ module.exports = React.createClass({
         });
 
         if(actions) {
-            actions.load({
-                perPage: perPage,
-            });
+            this.loadData();
         }
+    },
+
+    onSearch(d) {
+        this.setState({
+            search: {
+                q: d.search.query,
+                field: d.search.column,
+            }
+        }, this.loadData);
     },
 
     onSelectPage(page) {
@@ -177,7 +188,22 @@ module.exports = React.createClass({
 
         this.setState({
             pagination: pagination,
-        });
+        }, this.loadData);
+    },
+
+    loadData() {
+        const actions = this.props.actions;
+
+        if(!actions) {
+            return;
+        }
+
+        const pagination = this.state.pagination || {};
+        const search = this.state.search || {};
+
+        this.props.actions.load(_.merge({
+            sortBy: this.state.sortBy,
+        }, pagination, search));
     },
 
     editCell(property, value, rowIndex) {
