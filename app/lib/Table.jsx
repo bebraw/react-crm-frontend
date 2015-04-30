@@ -148,6 +148,24 @@ module.exports = React.createClass({
         );
     },
 
+    onPerPage(e) {
+        const actions = this.props.actions;
+        const perPage = parseInt(e.target.value, 10);
+        var pagination = this.state.pagination || {};
+
+        pagination.perPage = perPage;
+
+        this.setState({
+            pagination: pagination
+        });
+
+        if(actions) {
+            actions.load({
+                perPage: perPage,
+            });
+        }
+    },
+
     onSelectPage(page) {
         var pagination = this.state.pagination;
 
