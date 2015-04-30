@@ -5,6 +5,7 @@ var Reflux = require('reflux');
 var titleCase = require('title-case');
 
 var reactabular = require('reactabular');
+var Search = reactabular.Search;
 var Table = reactabular.Table;
 
 var Paginator = require('react-pagify');
@@ -121,7 +122,15 @@ module.exports = React.createClass({
 
         return (
             store.data && store.data.length?
-            <div>
+            <div className='table-container'>
+                <div className='table-controls'>
+                    <div className='table-per-page-container'>
+                        Per page <input type='text' defaultValue={pagination.perPage} onChange={this.onPerPage}></input>
+                    </div>
+                    <div className='table-search-container'>
+                        Search <Search columns={columns} onChange={this.setState.bind(this)} />
+                    </div>
+                </div>
                 <Table
                     className='pure-table pure-table-striped'
                     columns={columns}

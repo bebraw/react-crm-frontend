@@ -25,3 +25,21 @@ body {
 .cancel-button {
     float: right;
 }
+
+.table-container table {
+    width: 100%;
+}
+
+.table-container .table-controls {
+    margin-bottom: 1em;
+
+    overflow: auto;
+}
+
+.table-container .table-controls .table-per-page-container {
+    float: left;
+}
+
+.table-container .table-controls .table-search-container {
+    float: right;
+}
