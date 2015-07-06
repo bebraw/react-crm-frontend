@@ -1,6 +1,6 @@
 'use strict';
 var React = require('react');
-var SkyLight = require('jsx!react-skylight/src/skylight.jsx');
+var SkyLight = require('babel!react-skylight/src/skylight.jsx');
 
 
 module.exports = React.createClass({
