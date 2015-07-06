@@ -50,7 +50,7 @@ module.exports = React.createClass({
                             <Menu.Item>
                                 <MenuLink to='registers'>Registers</MenuLink>
 
-                                {inRegisters?
+                                {inRegisters ?
                                 <Menu.List className='submenu'>
                                     <Menu.Item>
                                         <MenuLink to='users'>Users</MenuLink>

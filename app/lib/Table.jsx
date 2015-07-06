@@ -125,7 +125,7 @@ module.exports = React.createClass({
         });
 
         return (
-            store.data && store.data.length?
+            store.data && store.data.length ?
             <div className='table-container'>
                 <div className='table-controls'>
                     <div className='table-per-page-container'>
@@ -140,12 +140,12 @@ module.exports = React.createClass({
                     columns={columns}
                     data={store.data}
                     header={header} />
-                {pageAmount > 1? <Paginator
+                {pageAmount > 1 ? <Paginator
                     page={pagination.page}
                     pages={pageAmount}
                     beginPages={3}
                     endPages={3}
-                    onSelect={this.onSelectPage} />: null}
+                    onSelect={this.onSelectPage} /> : null}
                 <Modal ref='modal' title={modal.title}>{modal.content}</Modal>
             </div>
             : <span>{i18n.noData}</span>
