@@ -1,8 +1,8 @@
-[![build status](https://secure.travis-ci.org/koodilehto/koodilehto-crm-frontend.png)](http://travis-ci.org/koodilehto/koodilehto-crm-frontend)
+[![build status](https://secure.travis-ci.org/bebraw/react-crm-frontend.png)](http://travis-ci.org/bebraw/react-crm-frontend)
 
-# koodilehto-crm-frontend
+# react-crm-frontend
 
-Frontend of Koodilehto CRM.
+Frontend of React CRM.
 
 ## Development
 
@@ -13,4 +13,4 @@ Frontend of Koodilehto CRM.
 
 ## License
 
-`koodilehto-crm-frontend` is available under MIT. See LICENSE for more details.
+`react-crm-frontend` is available under MIT. See LICENSE for more details.

@@ -41,7 +41,7 @@ module.exports = React.createClass({
 
                 <div id='menu' className={classNames({active: menuActive})}>
                     <Menu>
-                        <Menu.Heading>Koodilehto</Menu.Heading>
+                        <Menu.Heading>React</Menu.Heading>
 
                         <Menu.List>
                             <Menu.Item>
